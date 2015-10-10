@@ -42,18 +42,7 @@ alias lgb='git log --graph --abbrev-commit --pretty="format:%C(blue)%h%Creset %C
 alias lg="lgb --branches HEAD"
 alias l="lg -n 10"
 
-ca() {
-	git commit --verbose --all ${*:+--message="$*"}
-
-# 	[[ -n $* ]] && local message="--message=$*"
-# 	eval echo git commit --verbose --all $message
-
-# 	if [[ -n $* ]]; then
-# 		git commit --verbose --all --message="$*"
-# 	else
-# 		git commit --verbose --all
-# 	fi
-}
+ca() { git commit --verbose --all ${*:+--message="$*"}; }
 alias ci="git commit --verbose"
 alias n="git commit --verbose --amend"
 alias na="git commit --verbose --amend --all"
