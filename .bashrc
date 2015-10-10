@@ -147,7 +147,7 @@ pwd-abbrev() {
     echo -n $newPWD
 }
 
-color_off='\e[m'
+color_off=$'\e[m'
 
 # regular colors
 black='\e[0;30m'
@@ -166,7 +166,7 @@ bgreen='\e[1;32m'
 byellow='\e[1;33m'
 bblue='\e[1;34m'
 bpurple='\e[1;35m'
-bcyan='\e[1;36m'
+bcyan=$'\e[1;36m'
 bwhite='\e[1;37m'
 
 source /usr/share/git/completion/git-prompt.sh
@@ -177,18 +177,13 @@ GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWUPSTREAM=verbose
 GIT_PS1_DESCRIBE_STYLE=branch
 
-PROMPT_COMMAND=prompt
+PS1='`__git_ps1 " %s " | sed -e "s/ master //"`\
+\[$bcyan\]\\$ \[$color_off\]\
+\[\e]2;\
+$(pwd-abbrev) $BASH_COMMAND\
+\a\]'
 
-prompt() {
-	#title
-	# echo -ne \[\e]2;
-	# pwd-abbrev
-	# echo -ne " $BASH_COMMAND"
-	# echo -ne \a\]
-	#
-	PS1="`__git_ps1 ' %s ' | sed -e 's/ master //'`\
-	\[$bcyan\]\$ \[$color_off\]"
-}
+unset PROMPT_COMMAND
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 
