@@ -64,8 +64,6 @@ alias rbc="git rebase --continue"
 alias ra="git rebase --abort"
 alias rs="git rebase --skip"
 
-alias o="less -x4"
-
 alias i="ls --color=auto"
 alias ii="i -l"
 alias ia="i -a"
@@ -74,6 +72,7 @@ alias e=i
 alias ee=ii
 alias ea=ia
 alias eea=iia
+o() { [[ -d $1 ]] && i "$@" || less -x4 "$@"; }
 
 alias c=cd
 alias u="cd .."
