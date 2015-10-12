@@ -112,6 +112,7 @@ export DIFFPROG=meld
 export GITHUB_USER=X1011
 
 shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar histappend xpg_echo
+HISTCONTROL=ignoredups
 
 # Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
