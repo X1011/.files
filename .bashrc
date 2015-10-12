@@ -23,44 +23,46 @@ alias pu="pa -Su"
 alias ppu="sudo powerpill -Su"
 alias pcu="pacaur -Sau"
 
-#alias git=git-achievements
 alias g=git
+alias h="git help"
+alias cg="git config --global"
 
 alias clone="git clone"
+alias p="git push"
+alias pl="git pull && l"
 
-alias s="git status --short"
-alias d="git diff --word-diff=color"
-alias dp="d HEAD^"
-alias dpc="dp HEAD"
-alias ds="git diff --stat"
 alias ch="git checkout"
-alias a="git add"
-alias au="git add --update"
-alias aa="git add --all"
+alias nb=new-branch
+alias suo=set-upstream-origin
 
 alias lgb='git log --graph --abbrev-commit --pretty="format:%C(blue)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%ad) %C(blue bold)%an%Creset"'
 alias lg="lgb --branches HEAD"
 alias l="lg -n 10"
 
+alias s="git status --short"
+alias d="git diff --word-diff=color"
+alias dp="d HEAD^"
+alias dpc="dp HEAD"
+alias t='d --cached'
+alias ds="git diff --stat"
+
+alias a="git add"
+alias au="git add --update"
+alias aa="git add --all"
+
 ca() { git commit --verbose --all ${*:+--message="$*"}; }
 alias ci="git commit --verbose"
+alias cip="git commit --patch"
 alias n="git commit --verbose --amend"
 alias na="git commit --verbose --amend --all"
-alias st="git stash"
-
-alias p="git push"
-alias pl="git pull && l"
-alias nb=new-branch
-alias suo=set-upstream-origin
+alias st='git stash save'
+alias sp='git stash pop'
 
 alias rb="git rebase"
-alias rbi="git rebase origin -i"
+alias rbi="git rebase -i"
 alias rbc="git rebase --continue"
 alias ra="git rebase --abort"
 alias rs="git rebase --skip"
-
-alias h="git help"
-alias cg="git config --global"
 
 alias o="less -x4"
 
@@ -94,7 +96,6 @@ new-branch() {
 }
 
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH; }
-
 prepend_path ~/bin
 
 export LESS="\
