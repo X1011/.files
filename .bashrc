@@ -167,7 +167,7 @@ GIT_PS1_SHOWUPSTREAM=verbose
 GIT_PS1_DESCRIBE_STYLE=branch
 
 PS1='`__git_ps1 "%s " | sed -e "s/master[ \|]\|u= //g"`\
-\[$bcyan\]\\$ \[$color_off\]\
+\[$bcyan\]\$ \[$color_off\]\
 \[\e]2;\
 $(pwd-abbrev) $BASH_COMMAND\
 \a\]'
