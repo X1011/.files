@@ -167,14 +167,21 @@ GIT_PS1_SHOWUPSTREAM=verbose
 GIT_PS1_DESCRIBE_STYLE=branch
 
 PS1='`__git_ps1 "%s " | sed -e "s/master[ \|]\|u= //g"`\
-\[$bcyan\]\$ \[$color_off\]\
-\[\e]2;\
-$(pwd-abbrev) $BASH_COMMAND\
-\a\]'
+\[$bcyan\]\$ \[$color_off\]'
 
 unset PROMPT_COMMAND
 
+title() {
+	echo -ne "\e]2;"
+	pwd-abbrev
+	echo -n " $BASH_COMMAND"
+	echo -ne "\a"
+}
+trap title DEBUG
+
 source /usr/share/doc/pkgfile/command-not-found.bash
+
+BASH_COMMAND= title
 
 
 # This file is sourced by all *interactive* bash shells on startup, including some apparently interactive shells such as scp and rcp that can't tolerate any output.  So make sure this doesn't display anything or bad things will happen!
