@@ -51,10 +51,12 @@ alias au="git add --update"
 alias aa="git add --all"
 
 ca() { git commit --verbose --all ${*:+--message="$*"}; }
-alias ci="git commit --verbose"
-alias cip="git commit --patch"
-alias n="git commit --verbose --amend"
-alias na="git commit --verbose --amend --all"
+alias m='git commit --verbose'
+alias mp='m --patch'
+alias n=' m --amend'
+alias np='n --patch'
+alias na='n --all'
+alias nan='na --no-edit'
 alias st='git stash save'
 alias sp='git stash pop'
 
