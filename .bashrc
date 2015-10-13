@@ -58,11 +58,12 @@ alias na="git commit --verbose --amend --all"
 alias st='git stash save'
 alias sp='git stash pop'
 
-alias rb="git rebase"
-alias rbi="git rebase -i"
-alias rbc="git rebase --continue"
-alias ra="git rebase --abort"
-alias rs="git rebase --skip"
+alias rb=' git rebase'
+alias ri=' rb --interactive'
+alias r3=' ri HEAD~3'
+alias rbc='rb --continue'
+alias ra=' rb --abort'
+alias rs=' rb --skip'
 
 alias i="ls --color=auto"
 alias ii="i -l"
