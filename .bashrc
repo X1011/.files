@@ -34,6 +34,9 @@ alias pl="git pull && l"
 alias ch="git checkout"
 alias nb=new-branch
 alias suo=set-upstream-origin
+alias b='git branch'
+alias reset='git reset'
+alias rs1='reset HEAD^'
 
 alias lgb='git log --graph --abbrev-commit --pretty="format:%C(blue)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%ad) %C(blue bold)%an%Creset"'
 alias lg="lgb --branches HEAD"
@@ -57,6 +60,8 @@ alias n=' m --amend'
 alias np='n --patch'
 alias na='n --all'
 alias nan='na --no-edit'
+
+alias sta='git stash'
 alias st='git stash save'
 alias sp='git stash pop'
 
