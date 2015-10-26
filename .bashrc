@@ -80,7 +80,7 @@ alias e=i
 alias ee=ii
 alias ea=ia
 alias eea=iia
-o() { [[ -d $1 ]] && i "$@" || less -x4 "$@"; }
+o() { [[ -d $1 ]] && i "$@" || less "$@"; }
 
 alias c=cd
 alias u="cd .."
@@ -110,7 +110,8 @@ export LESS="\
 	--LONG-PROMPT \
 	--RAW-CONTROL-CHARS \
 	--quit-if-one-screen \
-	--no-init"
+	--no-init \
+	--tabs=4"
 
 export EDITOR=vim
 export VISUAL=medit
