@@ -10,12 +10,15 @@ alias p='git push'
 alias po='p origin'
 alias pl='git pull && l'
 
-alias ch='git checkout'
+alias b='git branch'
+alias bv='git branch -vv'
 suo() {
     branch=${1:-$(git rev-parse --abbrev-ref HEAD)}
     git branch $branch --set-upstream-to origin/$branch
 }
-alias b='git branch'
+
+alias ch='git checkout'
+alias co='git checkout origin'
 alias reset='git reset'
 alias rs1='reset HEAD^'
 
@@ -54,8 +57,8 @@ alias na='n --all'
 alias nn='n --no-edit'
 alias nan='na --no-edit'
 
-alias sta='git stash'
-alias st='git stash save'
+alias st='git stash'
+alias ss='git stash save'
 alias sp='git stash pop'
 
 alias rb=' git rebase'
@@ -65,3 +68,4 @@ alias r3=' ri HEAD~3'
 alias rbc='rb --continue'
 alias ra=' rb --abort'
 alias rs=' rb --skip'
+alias ma='git merge --abort'
