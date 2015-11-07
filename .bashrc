@@ -72,6 +72,13 @@ bpurple='\e[1;35m'
 bcyan=$'\e[1;36m'
 bwhite='\e[1;37m'
 
+pcol() { # prompt color?
+	# use term?: github.com/bpkg/term
+	# output params $2+, then switch color off
+	# http://linuxcommand.org/lc3_adv_tput.php
+	tput
+}
+
 source /usr/share/git/completion/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
