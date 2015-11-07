@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+unalias -a
 source ~/.config/git-aliases.bash
 
 alias al=alias
