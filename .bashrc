@@ -114,13 +114,15 @@ export LESS="\
 	--tabs=4"
 
 export EDITOR=vim
-export VISUAL=medit
+export VISUAL=gvim
 export DIFFPROG=meld
+export TIGRC_USER=~/.config/tigrc
 
 export GITHUB_USER=X1011
 
 shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar histappend xpg_echo
 HISTCONTROL=ignoredups
+HISTSIZE=1000
 
 # Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -191,6 +193,7 @@ trap title DEBUG
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 
+# set the title now, with empty BASH_COMMAND
 BASH_COMMAND= title
 
 
