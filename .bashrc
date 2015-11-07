@@ -80,7 +80,7 @@ GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWUPSTREAM=verbose
 GIT_PS1_DESCRIBE_STYLE=branch
 
-PS1='`[[ $PWD = ~ ]] || __git_ps1 "%s " | sed -e "s/master[ \|]\|u= //g"`\
+PS1='`__git_ps1 "%s " | sed -e "s/master[ \|]\|u= //g"`\
 \[$bcyan\]\$ \[$color_off\]'
 
 unset PROMPT_COMMAND
