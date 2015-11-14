@@ -11,6 +11,11 @@ set tabstop=4
 
 syntax enable
 
+augroup vimrc
+	autocmd!
+	autocmd BufWritePost .vimrc,.gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
 function! ResCur()
 	if line("'\"") <= line("$")
 		normal! g`"
