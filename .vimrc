@@ -1,3 +1,4 @@
+map <C-n> :tabnew<CR>
 map <M-q> :confirm quit<CR>
 map <C-s> :w<CR>
 map <M-j> gt
