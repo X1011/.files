@@ -1,14 +1,15 @@
+map <M-q> :confirm quit<CR>
+map <C-s> :w<CR>
 map <M-j> gt
 map <M-k> gT
-map <C-s> :w<CR>
-
-syntax enable
 
 set ignorecase
 set smartcase
 set guicursor+=a:blinkon0
 set shiftwidth=4
 set tabstop=4
+
+syntax enable
 
 function! ResCur()
   if line("'\"") <= line("$")
