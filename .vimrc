@@ -4,6 +4,8 @@ map <C-s> :w<CR>
 
 syntax enable
 
+set ignorecase
+set smartcase
 set guicursor+=a:blinkon0
 set shiftwidth=4
 set tabstop=4
