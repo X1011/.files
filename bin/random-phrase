@@ -1,0 +1,5 @@
+#! /bin/bash
+
+for ((i=0; i<$2; i++)); do
+	shuf -n $1 /usr/share/dict/no-double-rights | paste -sd ' '
+done

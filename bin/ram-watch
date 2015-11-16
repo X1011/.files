@@ -1,0 +1,2 @@
+#! /usr/bin/env sh
+watch -t 'free -h | cut -c 37-43,63-68,76-'

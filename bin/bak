@@ -1,0 +1,26 @@
+#! /bin/bash
+set -o errexit
+
+rsync --archive --no-links --cvs-exclude --delete-excluded --inplace --progress --verbose --stats --human-readable --filter=dir-merge_.rsync-filter --link-dest=/ / ~dan/bak \
+	| egrep --invert-match \
+		-e '^skipping non-regular file' \
+		-e '^rsync: link ".*" => /(etc/|\.).* failed: Operation not permitted'
+
+pacman --query --quiet --explicit > ~/bak/pkg-list.txt
+
+rclone-bak() {
+	rclone --config=$HOME/.config/rclone.conf --verbose --drive-use-trash sync "$@" 2>&1 \
+	| egrep --invert-match \
+	-e 'Size and MD5SUM of src and dst objects identical' \
+	-e 'Unchanged skipping' \
+	-e 'Size and modification time the same' \
+	-e 'Sending chunk' \
+	-e 'googleapi: Error 403: User rate limit exceeded, userRateLimitExceeded' \
+	-e ': Reducing sleep to' \
+	-e ': (Sizes|Md5sums|Modification times) differ'
+}
+
+#rclone-bak /etc drive:bak/linux/arch/etc -n
+rclone-bak ~/bak drive:bak/linux/arch
+# 	-e "Can't transfer non file/directory" \
+# 	-e '' \

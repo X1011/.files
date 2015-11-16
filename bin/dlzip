@@ -1,0 +1,4 @@
+#! /bin/bash
+
+[[ -d $2 ]] || mkdir --parents --verbose "$2"
+curl --location "$1" | bsdtar --extract --file - --verbose ${2:+--directory "$2"}

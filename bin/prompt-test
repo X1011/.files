@@ -1,0 +1,3 @@
+#! /bin/bash
+echo ~/.bashrc | entr bash -c "
+echo exit | bash -i 2>&1 | head --lines=-1" #show all but the last line, which is just 'exit'
