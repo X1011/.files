@@ -1,3 +1,5 @@
+map <M-Left> :bprevious<CR>
+map <M-Right> :bnext<CR>
 map <C-n> :tabnew<CR>
 map <M-q> :confirm quit<CR>
 map <C-s> :w<CR>
