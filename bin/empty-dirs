@@ -1,3 +1,3 @@
-#! /bin/bash
+#! /usr/bin/env sh
 
 find -O3 -regextype posix-extended ! -regex "\./(mega|drive|.config/google-chrome-backup|.local|git).*" -prune -or -type d -empty

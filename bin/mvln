@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 set +o errexit
 
 local dest=${!#} #last arg (indirect reference to $#, which is the number of args)

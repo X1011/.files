@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
 # undeleteBtrfs.sh
 # Copyright (C) 2014 Andreas Oelkers <info@oelkers.de>

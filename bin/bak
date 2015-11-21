@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 set -o errexit
 
 rsync --archive --no-links --cvs-exclude --delete-excluded --inplace --progress --verbose --stats --human-readable --filter=dir-merge_.rsync-filter --link-dest=/ / ~dan/bak \

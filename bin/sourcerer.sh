@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+
 echo $0
 echo $_
 echo ${BASH_SOURCE}

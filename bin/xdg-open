@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /usr/bin/env sh
 
 # modified to not use open_xfce, because it doesn't handle URIs that don't launch a browser
 
