@@ -1,5 +1,5 @@
 "paste
-map <C-S-v> "+gp
+map <M-v> "+gp
 map <M-Left> :bprevious<CR>
 map <M-Right> :bnext<CR>
 map <C-n> :tabnew<CR>
