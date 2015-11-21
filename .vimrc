@@ -1,10 +1,15 @@
+"paste
+map <C-S-v> "+gp
 map <M-Left> :bprevious<CR>
 map <M-Right> :bnext<CR>
 map <C-n> :tabnew<CR>
 map <M-q> :confirm quit<CR>
-map <C-s> :w<CR>
+map <C-s> :write<CR>
 map <M-j> gt
 map <M-k> gT
+
+"go to beginning of command line
+cnoremap <C-A> <Home>
 
 set ignorecase
 set smartcase
