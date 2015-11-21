@@ -4,6 +4,7 @@ unalias -a
 source ~/.config/git-aliases.bash
 
 alias al=alias
+gv() { gvim "$@" & }
 me() { medit "$@" & }
 alias rc="rclone --config=$HOME/.config/rclone.conf --drive-use-trash --verbose"
 alias cpr='cp --recursive --reflink --preserve=mode,ownership,timestamps'
@@ -14,7 +15,7 @@ alias str="sudo gvfs-trash"
 
 alias pa="sudo pacman"
 alias prm="pa --remove --recursive --unneeded"
-alias rm-orphans="prm `pa --query --quiet --unrequired --deps | xargs`"
+alias rm-orphans="prm `pacman --query --quiet --unrequired --deps | xargs`"
 alias pc=pacaur
 
 alias pas="pa -S"

@@ -47,10 +47,12 @@ alias ds='git diff --stat'
 alias a='git add'
 alias au='git add --update'
 alias aa='git add --all'
+alias af='git add --force'
 
 ca() { git commit --verbose --all ${*:+--message="$*"}; }
 alias m='git commit --verbose'
 alias mp='m --patch'
+mm() { m --message="$*"; }
 alias n=' m --amend'
 alias np='n --patch'
 alias na='n --all'
