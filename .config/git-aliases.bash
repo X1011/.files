@@ -40,7 +40,7 @@ alias s='git status --short'
 alias d='git diff --word-diff=color'
 alias dp='d HEAD^'
 alias dpc='dp HEAD'
-alias do='d origin'
+alias dor='d origin' #don't use 'do'; it's a reserved word
 alias t='d --cached'
 alias ds='git diff --stat'
 
