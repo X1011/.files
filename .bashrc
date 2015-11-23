@@ -72,7 +72,7 @@ bpurple='\e[1;35m'
 bcyan=$'\e[1;36m'
 bwhite='\e[1;37m'
 
-source ~/.config/git-prompt.sh
+source /usr/share/git/completion/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
