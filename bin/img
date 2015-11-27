@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+pv --progress --timer --eta --rate --average-rate --bytes "$1" | \
+dd bs=4M of="$2"
