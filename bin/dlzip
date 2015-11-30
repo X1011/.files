@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+set -o errexit
 
 [[ -d $2 ]] || mkdir --parents --verbose "$2"
-curl --location "$1" | bsdtar --extract --file - --verbose ${2:+--directory "$2"}
+curl --location "$1" | bsdtar --extract --file - --verbose --keep-old-files ${2:+--directory "$2"}
