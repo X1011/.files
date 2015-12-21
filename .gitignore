@@ -2,4 +2,4 @@
 !.bashrc
 !.gitignore
 !/bin
-!/bin/**
+!/bin/*

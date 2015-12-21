@@ -5,7 +5,7 @@
 source ~/.config/aliases.bash
 
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH; }
-prepend_path ~/bin
+prepend_path ~/bin:~/bin/vendor
 
 export LESS="\
 	--ignore-case \
