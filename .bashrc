@@ -94,6 +94,7 @@ title() {
 trap title DEBUG
 
 source /usr/share/doc/pkgfile/command-not-found.bash
+source ~/.local/share/marker/marker.sh
 
 # set the title now, with empty BASH_COMMAND
 BASH_COMMAND= title
