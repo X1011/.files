@@ -1,0 +1,22 @@
+# just excluding these certificate directories to prevent noise in the log, since i'm excluding symlinks, anyway
+/ca-certificates
+/ssl/certs
+
+/crypttab
+/gshadow*
+/passwd*
+/shadow*
+/sudoers
+/sudoers.d
+
+/cups
+/NetworkManager/system-connections
+/wicd
+/wifi-radar.conf
+
+/pacman.d/gnupg
+/polkit-1/rules.d
+/ppp/*-secrets
+/snapper/configs
+
+#/udev/hwdb.bin

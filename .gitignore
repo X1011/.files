@@ -1,5 +1,12 @@
 *
 !.bashrc
 !.gitignore
+
 !/bin
 !/bin/*
+
+!/.config
+!/.config/rclone
+!/.config/rclone/*
+/.config/rclone/rclone.conf
+ 
