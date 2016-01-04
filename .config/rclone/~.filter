@@ -2,24 +2,19 @@
 - /.atom/*
 
 - /.config/google-chrome-*
-+ /.config/google-chrome/Default
-+ /Bookmarks*
++ /.config/google-chrome/Default{,/Bookmarks*}
 
 + /databases
-+ /databases/chrome-extension_fjnbnpbmkenffdnngjfgmeleoegfcffe_0/***
+#+ /databases/chrome-extension_fjnbnpbmkenffdnngjfgmeleoegfcffe_0/***
 
 + /Local Extension Settings
-+ /Local Extension Settings/cfhdojbkjhnklbpkdaibdccddilifddb/***
+#+ /Local Extension Settings/cfhdojbkjhnklbpkdaibdccddilifddb/***
 
 + /Local Storage
 + /Local Storage/chrome-extension_kniehgiejgnnpgojkdhhjbgbllnfkfdk_0.localstorage*
 + /Local Storage/http_www.twitch.tv_0.localstorage*
 
-+ /.rsync-filter
-
-- *
-
-- /.config/google-chrome/*
+- /.config/google-chrome/**
 
 - /.gnome/apps
 - /.local/share/applications/chrome-*.desktop

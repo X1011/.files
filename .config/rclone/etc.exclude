@@ -1,7 +1,8 @@
-# just excluding these certificate directories to prevent noise in the log, since i'm excluding symlinks, anyway
+# these are symlinks that rclone can't handle, anyway
 /ca-certificates
 /ssl/certs
 
+# login secrets
 /crypttab
 /gshadow*
 /passwd*
@@ -9,14 +10,17 @@
 /sudoers
 /sudoers.d
 
-/cups
-/NetworkManager/system-connections
+# network secrets
+/cups/ssl/**
+/NetworkManager/system-connections/**
+/ppp/*-secrets
 /wicd
 /wifi-radar.conf
 
-/pacman.d/gnupg
+/fonts/**
+
+#/pacman.d/gnupg/**
 /polkit-1/rules.d
-/ppp/*-secrets
 /snapper/configs
 
 #/udev/hwdb.bin

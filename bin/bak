@@ -1,15 +1,12 @@
 #! /usr/bin/env bash
 set -o errexit
 
-rsync --archive --no-links --cvs-exclude --delete-excluded --inplace --progress --verbose --stats --human-readable --filter=dir-merge_.rsync-filter --link-dest=/ / ~dan/bak \
-	| egrep --invert-match \
-		-e '^skipping non-regular file' \
-		-e '^rsync: link ".*" => /(etc/|\.).* failed: Operation not permitted'
+#pacman --query --quiet --explicit > ~/bak/pkg-list.txt
 
-pacman --query --quiet --explicit > ~/bak/pkg-list.txt
+pushd ~/.config/rclone >/dev/null
 
 rclone-bak() {
-	rclone --config=$HOME/.config/rclone.conf --verbose --drive-use-trash sync "$@" 2>&1 \
+	rclone --config=rclone.conf --verbose --drive-use-trash --delete-excluded --filter-from=global.filter sync "$@" 2>&1 \
 	| egrep --invert-match \
 	-e 'Size and MD5SUM of src and dst objects identical' \
 	-e 'Unchanged skipping' \
@@ -20,7 +17,10 @@ rclone-bak() {
 	-e ': (Sizes|Md5sums|Modification times) differ'
 }
 
-#rclone-bak /etc drive:bak/linux/arch/etc -n
-rclone-bak ~/bak drive:bak/linux/arch
+rclone-bak {,drive:bak/linux/arch}/etc --exclude-from=etc.exclude --max-size=640k "$@"
+rclone-bak {,drive:bak/linux/arch/}~   --exclude-from=./~.exclude --filter-from=./~.filter "$@"
+
 # 	-e "Can't transfer non file/directory" \
 # 	-e '' \
+
+popd >/dev/null
