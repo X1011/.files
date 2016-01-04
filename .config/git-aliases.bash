@@ -8,13 +8,14 @@ alias cg='git config --global'
 alias clone='git clone'
 alias p='git push'
 alias po='p origin'
-alias pl='git pull && l'
+pl() { git pull "$@" && l; }
+alias fe='git fetch'
 
 alias b='git branch'
 alias bv='git branch -vv'
 suo() {
-    branch=${1:-$(git rev-parse --abbrev-ref HEAD)}
-    git branch $branch --set-upstream-to origin/$branch
+    local branch=${1:-$(git rev-parse --abbrev-ref HEAD)}
+    git branch "$branch" --set-upstream-to "origin/$branch"
 }
 
 alias ch='git checkout'
@@ -22,7 +23,7 @@ alias co='git checkout origin'
 alias reset='git reset'
 alias rs1='reset HEAD^'
 
-lgb() { git log --graph --abbrev-commit --pretty="\
+lgb() { git log --graph --abbrev-commit --word-diff=color --pretty="\
 %Cgreen%>>|(12,trunc)%ad\
 %Creset %<(50,trunc)%s\
 %C(yellow)%>>(14,trunc)%D \
@@ -33,8 +34,8 @@ sed -e 's/*/●/g;
         s/ ago//g'
 #    -e 's|, origin/HEAD||'
 }
-alias lg='lgb --branches HEAD'
-alias l='lg -n 7'
+lg() { lgb --branches HEAD "$@"; }
+l() { lg -n 7 "$@"; }
 
 alias s='git status --short'
 alias d='git diff --word-diff=color'
@@ -67,7 +68,15 @@ alias rb=' git rebase'
 alias rbo='rb origin'
 alias ri=' rb --interactive'
 alias r3=' ri HEAD~3'
+alias r5=' ri HEAD~5'
 alias rbc='rb --continue'
 alias ra=' rb --abort'
 alias rs=' rb --skip'
+
+alias mg='git merge'
 alias ma='git merge --abort'
+merge-master() {
+    local branch=`git rev-parse --abbrev-ref HEAD`
+    git checkout master
+    git merge "$@" "$branch"
+}

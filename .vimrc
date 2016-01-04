@@ -1,28 +1,50 @@
+"replace line with yanked line
+map <M-0> V"0p
+"copy
+map <M-c> "+y
 "paste
 map <M-v> "+gp
 map <M-Left> :bprevious<CR>
 map <M-Right> :bnext<CR>
 map <C-n> :tabnew<CR>
 map <M-q> :confirm quit<CR>
-map <C-s> :write<CR>
+map <C-s> :Update<CR>
 map <M-j> gt
 map <M-k> gT
 
 "go to beginning of command line
 cnoremap <C-A> <Home>
 
-set ignorecase
-set smartcase
+nnoremap ; :
+vnoremap ; :
+nnoremap ' ;
+vnoremap ' ;
+
+set directory=~/.cache/vim,/var/tmp/vim,.,/tmp/vim
+set ignorecase "use case insensitive search
+set smartcase  "except when using capital letters
 set guicursor+=a:blinkon0
 set shiftwidth=4
 set tabstop=4
+set showcmd "Show partial commands in the last line of the screen
 
 syntax enable
 
 augroup vimrc
 	autocmd!
-	autocmd BufWritePost .vimrc,.gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+	autocmd BufWritePost .vimrc,.gvimrc source $MYVIMRC | if has('gui_running') | source $MYGVIMRC | endif
 augroup END
+
+
+" If the current buffer has never been saved, it will have no name,
+" call the file browser to save it, otherwise just save it.
+command -nargs=0 -bar Update if &modified 
+                           \|    if empty(bufname('%'))
+                           \|        browse confirm write
+                           \|    else
+                           \|        confirm write
+                           \|    endif
+                           \|endif
 
 
 function! ResCur()

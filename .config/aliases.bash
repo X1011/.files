@@ -3,10 +3,16 @@
 unalias -a
 source ~/.config/git-aliases.bash
 
-alias al=alias
+filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard"; }
+al() {
+	alias "$@" 2>/dev/null || 
+	declare -f "$@" | 
+		sed -e '1N; #on the 1st line only, append the next line into the buffer
+		        s/\n//'
+}
 gv() { gvim "$@" & }
 me() { medit "$@" & }
-alias rc="rclone --config=$HOME/.config/rclone.conf --drive-use-trash --verbose"
+alias rc="rclone --config=$HOME/.config/rclone/rclone.conf --drive-use-trash --verbose"
 alias cpr='cp --recursive --reflink --preserve=mode,ownership,timestamps'
 alias sym="ln -s"
 
@@ -47,7 +53,7 @@ alias ppd=popd
 mkcd() { mkdir -p "$@" && cd $1; }
 mksud() { sudo mkdir -p "$@" && cd $1; }
 
-alias tf="tail -f"
+alias tf="tail --follow --retry"
 
 .() { source ${@:-~/.bashrc}; }
 alias brc='$VISUAL ~/.bashrc && .'
