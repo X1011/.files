@@ -1,14 +1,17 @@
 #! /usr/bin/env bash
 
+set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
 filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard"; }
-al() {
+alias al=id
+id() {
 	alias "$@" 2>/dev/null || 
 	declare -f "$@" | 
 		sed -e '1N; #on the 1st line only, append the next line into the buffer
-		        s/\n//'
+		        s/\n//' ||
+	whatis "$@"
 }
 gv() { gvim "$@" & }
 me() { medit "$@" & }
