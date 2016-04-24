@@ -4,6 +4,12 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+alientonx() { twitch-dl $4 $3 Alientonx reads My Immortal: ch. $1–$2 ;}
+twitch-dl() {
+	livestreamer twitch.tv/foo/v/$1 --hls-start-time $2 --hls-segment-threads 5 best --stdout |\
+	ffmpeg -i - -codec copy -bsf:a aac_adtstoasc "${*:3}.mp4"
+}
+
 filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard"; }
 alias al=id
 id() {
