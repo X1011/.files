@@ -59,8 +59,8 @@ alias uu="cd ../.."
 alias u3="cd ../../.."
 alias pd=pushd
 alias ppd=popd
-mkcd() {       mkdir -p "$@" && cd $1 ;}
-mksud() { sudo mkdir -p "$@" && cd $1 ;}
+mkcd() {       mkdir -p "$@" && cd "$1" ;}
+mksud() { sudo mkdir -p "$@" && cd "$1" ;}
 
 alias tf="tail --follow --retry"
 
