@@ -10,7 +10,7 @@ twitch-dl() {
 	ffmpeg -i - -codec copy -bsf:a aac_adtstoasc "${*:3}.mp4"
 }
 
-filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard"; }
+filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard" ;}
 alias al=id
 id() {
 	alias "$@" 2>/dev/null || 
@@ -51,7 +51,7 @@ alias e=i
 alias ee=ii
 alias ea=ia
 alias eea=iia
-o() { [[ -d $1 ]] && i "$@" || less "$@"; }
+o() { [[ -d $1 ]] && i "$@" || less "$@" ;}
 
 alias c=cd
 alias u="cd .."
@@ -59,10 +59,10 @@ alias uu="cd ../.."
 alias u3="cd ../../.."
 alias pd=pushd
 alias ppd=popd
-mkcd() { mkdir -p "$@" && cd $1; }
-mksud() { sudo mkdir -p "$@" && cd $1; }
+mkcd() {       mkdir -p "$@" && cd $1 ;}
+mksud() { sudo mkdir -p "$@" && cd $1 ;}
 
 alias tf="tail --follow --retry"
 
-.() { source ${@:-~/.bashrc}; }
+.() { source ${@:-~/.bashrc} ;}
 alias brc='$VISUAL ~/.bashrc && .'
