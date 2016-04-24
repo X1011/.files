@@ -9,14 +9,14 @@ alias al=id
 id() {
 	alias "$@" 2>/dev/null || 
 	declare -f "$@" | 
-		sed -e '1N; #on the 1st line only, append the next line into the buffer
-		        s/\n//' ||
+		sed -e '1N; # on the 1st line only, append the next line into the buffer
+		        s/\n//' || # join 1st 2 lines, because One True Brace Style!
 	whatis "$@"
 }
 gv() { gvim "$@" & }
 me() { medit "$@" & }
 alias rc="rclone --config=$HOME/.config/rclone/rclone.conf --drive-use-trash --verbose"
-alias cpr='cp --recursive --reflink --preserve=mode,ownership,timestamps'
+alias cpr='cp --reflink=auto --archive'
 alias sym="ln -s"
 
 alias tra=gvfs-trash
@@ -30,7 +30,7 @@ alias pc=pacaur
 alias pas="pa -S"
 alias pcs="pacaur -S"
 alias pps="sudo powerpill -S"
-alias au="sudo aura -A"
+alias au="sudo aura --aursync --unsuppress"
 
 alias syu="pa -Syu"
 alias pu="pa -Su"
