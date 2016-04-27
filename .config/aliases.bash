@@ -6,8 +6,11 @@ source ~/.config/git-aliases.bash
 
 alientonx() { twitch-dl $4 $3 Alientonx reads My Immortal: ch. $1–$2 ;}
 twitch-dl() {
-	livestreamer --hls-start-time $2 --hls-segment-threads 4 twitch.tv/foo/v/$1 best --stdout |\
-	ffmpeg -i - -codec copy -bsf:a aac_adtstoasc "${*:3}.mkv"
+	local name="${*:3}"
+	mkfifo "$name.ts"
+	livestreamer --hls-start-time $2 --hls-segment-threads 4 twitch.tv/foo/v/$1 best --output "$name.ts" --force |\
+	ffmpeg -i "$name.ts" -codec copy -bsf:a aac_adtstoasc "$name.mkv"
+	rm "$name.ts"
 }
 
 filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard" ;}
