@@ -6,7 +6,8 @@ source ~/.config/git-aliases.bash
 
 alientonx() { twitch-dl $4 $3 Alientonx reads My Immortal: ch. $1–$2 ;}
 twitch-dl() {
-	livestreamer --hls-start-time $2 --hls-segment-threads 4 twitch.tv/foo/v/$1 best --stdout |\
+	(( $2 > 0 )) && time=true # livestreamer will choke if given a start time of 0
+	livestreamer ${time:+ --hls-start-time $2} --hls-segment-threads 4 twitch.tv/foo/v/$1 best --stdout |\
 	ffmpeg -i - -codec copy -bsf:a aac_adtstoasc "${*:3}.mkv"
 }
 
