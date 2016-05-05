@@ -23,7 +23,8 @@ id() {
 	# on line 1, read in the next line, then remove the newline character
 	declare -f "$@" | sed '1 {N; s/\n//}' ||
 
-	whatis "$@"
+	whatis "$@" 2>/dev/null ||
+	which "$@"
 }
 gv() { gvim "$@" & }
 me() { medit "$@" & }
