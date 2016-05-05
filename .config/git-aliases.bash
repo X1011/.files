@@ -34,7 +34,7 @@ sed -e 's/*/●/g;
         s/ ago//g'
 #    -e 's|, origin/HEAD||'
 }
-lg() { lgb --branches HEAD "$@"; }
+lg() { lgb --branches HEAD origin "$@"; }
 l() { lg -n 7 "$@"; }
 
 alias s='git status --short'
