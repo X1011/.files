@@ -4,6 +4,7 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+alias userstyles='objectpath --url https://widget.userstyles.org/users/24012.json --expr "sum($.*.total_installs) + 2608"'
 alias ff='ffmpeg -hide_banner'
 
 alientonx() { twitch-dl $4 $3 Alientonx reads My Immortal: ch. $1–$2 ;}
