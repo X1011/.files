@@ -4,11 +4,13 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+alias ff='ffmpeg -hide_banner'
+
 alientonx() { twitch-dl $4 $3 Alientonx reads My Immortal: ch. $1–$2 ;}
 twitch-dl() {
 	(( $2 > 0 )) && time=true # livestreamer will choke if given a start time of 0
-	livestreamer ${time:+ --hls-start-time $2} --hls-segment-threads 4 twitch.tv/foo/v/$1 best --stdout |\
-	ffmpeg -i - -codec copy -bsf:a aac_adtstoasc "${*:3}.mkv"
+	livestreamer ${time:+ --hls-start-time $2} --hls-segment-threads 5 twitch.tv/foo/v/$1 best --stdout \
+	| ffmpeg -hide_banner -i - -codec copy -bsf:a aac_adtstoasc "${*:3}.mkv"
 }
 
 filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard" ;}
