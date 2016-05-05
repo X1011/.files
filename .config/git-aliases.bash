@@ -23,6 +23,8 @@ alias co='git checkout origin'
 alias reset='git reset'
 alias rs1='reset HEAD^'
 
+alias log='git log --word-diff=color'
+alias lp='log --patch'
 lgb() { git log --graph --abbrev-commit --word-diff=color --pretty="\
 %Cgreen%>>|(12,trunc)%ad\
 %Creset %<(50,trunc)%s\
@@ -54,9 +56,12 @@ ca() { git commit --verbose --all ${*:+--message="$*"}; }
 alias m='git commit --verbose'
 alias mp='m --patch'
 mm() { m --message="$*"; }
+m1() { m "$1" --message="${*:2}"; }
+
 alias n=' m --amend'
 alias np='n --patch'
 alias na='n --all'
+nm() { n --message="$*"; }
 alias nn='n --no-edit'
 alias nan='na --no-edit'
 
