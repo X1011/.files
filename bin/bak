@@ -9,18 +9,20 @@ rsync --archive --no-links --cvs-exclude --delete-excluded --inplace --progress 
 pacman --query --quiet --explicit > ~/bak/pkg-list.txt
 
 rclone-bak() {
-	rclone --config=$HOME/.config/rclone.conf --verbose --drive-use-trash sync "$@" 2>&1 \
+	rclone --config=$HOME/.config/rclone/rclone.conf --verbose --drive-use-trash sync "$@" 2>&1 \
 	| egrep --invert-match \
-	-e 'Size and MD5SUM of src and dst objects identical' \
 	-e 'Unchanged skipping' \
 	-e 'Size and modification time the same' \
 	-e 'Sending chunk' \
 	-e 'googleapi: Error 403: User rate limit exceeded, userRateLimitExceeded' \
 	-e ': Reducing sleep to' \
-	-e ': (Sizes|Md5sums|Modification times) differ'
+	-e 'pacer: Rate limited, increasing sleep to ' \
+	-e ': (Sizes|Md5sums|Modification times) differ'\
+	-e ': (Finished r|R)eading '\
+	-e 'pacer: low level retry 1/10'\
+	-e '/\.config/xfce4/.+?: Size and MD5 of src and dst objects identical'
+	#-e '' \
+	#-e "Can't transfer non file/directory" \
 }
 
-#rclone-bak /etc drive:bak/linux/arch/etc -n
 rclone-bak ~/bak drive:bak/linux/arch
-# 	-e "Can't transfer non file/directory" \
-# 	-e '' \
