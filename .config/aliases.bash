@@ -17,10 +17,12 @@ twitch-dl() {
 filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard" ;}
 alias al=id
 id() {
-	alias "$@" 2>/dev/null || 
-	declare -f "$@" | 
-		sed -e '1N; # on the 1st line only, append the next line into the buffer
-		        s/\n//' || # join 1st 2 lines, because One True Brace Style!
+	alias "$@" 2>/dev/null ||
+
+	# join 1st 2 lines, because One True Brace Style!
+	# on line 1, read in the next line, then remove the newline character
+	declare -f "$@" | sed '1 {N; s/\n//}' ||
+
 	whatis "$@"
 }
 gv() { gvim "$@" & }
