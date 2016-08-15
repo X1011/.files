@@ -19,9 +19,9 @@ map <M-Right> :bnext<CR>
 map <C-n> :tabnew<CR>
 map <M-q> :confirm quit<CR>
 map <C-s> :Update<CR>
-map <M-j> gt
-map <M-k> gT
 
+map <silent> <M-j> :tabnext<CR>
+map <silent> <M-k> :tabprevious<CR>
 
 nnoremap ; :
 vnoremap ; :
