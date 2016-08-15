@@ -22,13 +22,16 @@ map <C-s> :Update<CR>
 map <M-j> gt
 map <M-k> gT
 
-"go to beginning of command line
-cnoremap <C-A> <Home>
 
 nnoremap ; :
 vnoremap ; :
 nnoremap ' ;
 vnoremap ' ;
+
+"readline/emacs-like bindings for insert and command line
+noremap! <C-a> <home>
+noremap! <C-f> <right>
+noremap! <C-b> <left>
 
 set directory=~/.cache/vim,/var/tmp/vim,.,/tmp/vim
 set ignorecase "use case insensitive search
