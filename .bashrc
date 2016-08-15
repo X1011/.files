@@ -7,24 +7,19 @@ source ~/.config/aliases.bash
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH; }
 prepend_path ~/bin:~/bin/vendor
 
-export LESS="\
-	--ignore-case \
-	--LONG-PROMPT \
-	--RAW-CONTROL-CHARS \
-	--quit-if-one-screen \
-	--no-init \
-	--tabs=4"
-
+export LESS="--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4"
 export EDITOR=vim
 export VISUAL=gvim
 export DIFFPROG=meld
 export TIGRC_USER=~/.config/tigrc
-
 export GITHUB_USER=X1011
 
 shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar histappend xpg_echo
 HISTCONTROL=ignoredups
 HISTSIZE=1000
+
+source /usr/share/doc/pkgfile/command-not-found.bash
+source ~/.local/share/marker/marker.sh
 
 # Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -91,9 +86,6 @@ title() {
 	echo -n " $BASH_COMMAND"
 	echo -ne "\a"
 }
-
-source /usr/share/doc/pkgfile/command-not-found.bash
-source ~/.local/share/marker/marker.sh
 
 # set the title now, with empty BASH_COMMAND
 BASH_COMMAND= title
