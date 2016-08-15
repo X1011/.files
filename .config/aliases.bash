@@ -37,7 +37,7 @@ alias str="sudo gvfs-trash"
 
 alias pa="sudo pacman"
 alias prm="pa --remove --recursive --unneeded"
-alias rm-orphans="prm `pacman --query --quiet --unrequired --deps | xargs`"
+alias rm-orphans='prm `pacman --query --quiet --unrequired --deps | xargs`'
 alias pc=pacaur
 
 alias pas="pa -S"
