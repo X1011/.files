@@ -91,13 +91,14 @@ title() {
 	echo -n " $BASH_COMMAND"
 	echo -ne "\a"
 }
-trap title DEBUG
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 source ~/.local/share/marker/marker.sh
 
 # set the title now, with empty BASH_COMMAND
 BASH_COMMAND= title
+
+trap title DEBUG
 
 
 # This file is sourced by all *interactive* bash shells on startup, including some apparently interactive shells such as scp and rcp that can't tolerate any output.  So make sure this doesn't display anything or bad things will happen!
