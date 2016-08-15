@@ -19,6 +19,8 @@ HISTCONTROL=ignoredups
 HISTSIZE=1000
 
 source /usr/share/doc/pkgfile/command-not-found.bash
+
+export MARKER_KEY_MARK='\em'
 source ~/.local/share/marker/marker.sh
 
 # Less Colors for Man Pages
