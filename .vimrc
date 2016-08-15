@@ -12,7 +12,7 @@ map ^w^c ^wc
 map <c-v> "+P
 map! <c-v> <C-r>+
 noremap <m-v> <c-v>
-noremap g^v <c-v>
+noremap g<c-v> <c-v>
 
 map <M-Left> :bprevious<CR>
 map <M-Right> :bnext<CR>
