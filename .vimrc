@@ -1,9 +1,19 @@
 "replace line with yanked line
 map <M-0> V"0p
+
 "copy
-map <M-c> "+y
+map <c-c> "+y
+noremap <m-c> <c-c>
+map ^w^c ^wc
+"copy all
+"map <c-s-c> :%yank +<cr>
+
 "paste
-map <M-v> "+gp
+map <c-v> "+P
+map! <c-v> <C-r>+
+noremap <m-v> <c-v>
+noremap g^v <c-v>
+
 map <M-Left> :bprevious<CR>
 map <M-Right> :bnext<CR>
 map <C-n> :tabnew<CR>
