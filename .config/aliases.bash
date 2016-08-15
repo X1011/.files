@@ -26,6 +26,7 @@ id() {
 	whatis "$@" 2>/dev/null ||
 	which "$@"
 }
+sgv() { sudo gvim "$@" & }
 gv() { gvim "$@" & }
 me() { medit "$@" & }
 alias rc="rclone --config=$HOME/.config/rclone/rclone.conf --drive-use-trash --verbose"
@@ -50,7 +51,7 @@ alias pu="pa -Su"
 alias ppu="sudo powerpill -Su"
 alias pcu="pacaur -Sau"
 
-alias i="ls --color=auto"
+alias i="ls --color=auto --human-readable"
 alias ii="i -l"
 alias ia="i -a"
 alias iia="i -la"
