@@ -17,12 +17,18 @@ noremap g<c-v> <c-v>
 map <M-Left> :bprevious<CR>
 map <M-Right> :bnext<CR>
 map <C-n> :tabnew<CR>
-map <M-q> :confirm quit<CR>
-map <C-s> :Update<CR>
+map <m-q> :confirm quit<CR>
+imap <m-q> <c-o><m-q>
 
 map <silent> <M-j> :tabnext<CR>
 map <silent> <M-k> :tabprevious<CR>
+imap <m-j> <c-o><m-j>
+imap <m-k> <c-o><m-k>
 
+nmap <C-s> :Update<CR>
+imap <C-s> <c-o>:Update<CR>
+
+"function! nimap(
 
 "readline/emacs-like bindings for insert and command line
 noremap! <C-a> <home>
