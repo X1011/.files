@@ -36,7 +36,7 @@ sed -e 's/*/●/g;
         s/ ago//g'
 #    -e 's|, origin/HEAD||'
 }
-lg() { lgb --branches HEAD origin "$@"; }
+lg() { lgb --branches --remotes=origin "$@"; }
 l() { lg -n 7 "$@"; }
 
 alias s='git status --short'
@@ -56,6 +56,7 @@ ca() { git commit --verbose --all ${*:+--message="$*"}; }
 alias m='git commit --verbose'
 alias mp='m --patch'
 mm() { m --message="$*"; }
+alias mma=ca
 m1() { m "$1" --message="${*:2}"; }
 
 alias n=' m --amend'
