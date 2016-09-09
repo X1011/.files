@@ -1,6 +1,12 @@
 #! /usr/bin/env bash
 set -o pipefail
 
+if [[ $1 = -h ]]; then
+	echo "twitch-dl id [ start-time [ (multi-word) name ]]"
+	echo '               start-time is an integer'
+	exit 0
+fi
+
 [[ $2 ]] && (( $2 > 0 )) && time="--hls-start-time $2"
              # livestreamer will choke if given a start time of 0
 
