@@ -7,16 +7,6 @@ source ~/.config/git-aliases.bash
 alias userstyles='objectpath --url https://widget.userstyles.org/users/24012.json --expr "sum($.*.total_installs) + 2608"'
 alias ff='ffmpeg -hide_banner'
 
-twitch-dl() {
-	[[ $2 ]] && (( $2 > 0 )) && local time="--hls-start-time $2"
-	            # livestreamer will choke if given a start time of 0
-	local name=${*:3} # use 3rd arg+
-	name=${name:-$1} # if not given, use id given as 1st arg
-
-	livestreamer $time --hls-segment-threads 5 twitch.tv/foo/v/$1 best --stdout \
-	| ffmpeg -hide_banner -i - -codec copy -bsf:a aac_adtstoasc "$name.mkv"
-}
-
 filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard" ;}
 alias al=id
 id() {

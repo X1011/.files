@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+set -o pipefail
+
+[[ $2 ]] && (( $2 > 0 )) && time="--hls-start-time $2"
+             # livestreamer will choke if given a start time of 0
+
+name=${*:3} # use 3rd arg+
+name=${name:-$1} # if not given, use id given as 1st arg
+
+livestreamer $time --hls-segment-threads 5 twitch.tv/foo/v/$1 best --stdout \
+| ffmpeg -hide_banner -i - -codec copy -bsf:a aac_adtstoasc "$name.mkv"
+
