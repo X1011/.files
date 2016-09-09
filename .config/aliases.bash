@@ -7,7 +7,6 @@ source ~/.config/git-aliases.bash
 alias userstyles='objectpath --url https://widget.userstyles.org/users/24012.json --expr "sum($.*.total_installs) + 2608"'
 alias ff='ffmpeg -hide_banner'
 
-alientonx() { twitch-dl $4 $3 Alientonx reads My Immortal: ch. $1–$2 ;}
 twitch-dl() {
 	[[ $2 ]] && (( $2 > 0 )) && local time="--hls-start-time $2"
 	            # livestreamer will choke if given a start time of 0
