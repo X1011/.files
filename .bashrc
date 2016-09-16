@@ -7,9 +7,10 @@ source ~/.config/aliases.bash
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH; }
 prepend_path ~/bin:~/bin/vendor:node_modules/.bin:/opt/mktags/bin
 
-export LESS="--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4"
-export EDITOR=vim
-export VISUAL=gvim
+export LESS='--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4'
+export VISUAL='gvim --nofork'
+export EDITOR="$VISUAL"
+#export EDITOR=vim
 export DIFFPROG=meld
 export TIGRC_USER=~/.config/tigrc
 export GITHUB_USER=X1011

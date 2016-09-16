@@ -19,7 +19,7 @@ id() {
 	whatis "$@" 2>/dev/null ||
 	which "$@"
 }
-sgv() { sudo gvim "$@" & }
+sgv() { gksudo gvim "$@" & }
 gv() { gvim "$@" & }
 me() { medit "$@" & }
 alias rc="rclone --config=$HOME/.config/rclone/rclone.conf --drive-use-trash --verbose"
