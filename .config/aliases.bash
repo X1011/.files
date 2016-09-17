@@ -22,7 +22,7 @@ id() {
 sgv() { gksudo gvim "$@" & }
 gv() { gvim "$@" & }
 me() { medit "$@" & }
-alias rc="rclone --config=$HOME/.config/rclone/rclone.conf --drive-use-trash --verbose"
+alias rcl="rclone --config=$HOME/.config/rclone/rclone.conf --drive-use-trash --verbose"
 alias cpr='cp --reflink=auto --archive'
 alias sym="ln -s"
 

@@ -75,7 +75,7 @@ alias rbo='rb origin'
 alias ri=' rb --interactive'
 alias r3=' ri HEAD~3'
 alias r5=' ri HEAD~5'
-alias rbc='rb --continue'
+alias rc='rb --continue'
 alias ra=' rb --abort'
 alias rs=' rb --skip'
 
