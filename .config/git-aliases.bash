@@ -25,7 +25,7 @@ alias rs1='reset HEAD^'
 
 alias log='git log --word-diff=color'
 alias lp='log --patch'
-lgb() { git log --graph --abbrev-commit --word-diff=color --pretty="\
+lg() { git log --graph --abbrev-commit --word-diff=color --pretty="\
 %Cgreen%>>|(12,trunc)%ad\
 %Creset %<(50,trunc)%s\
 %C(yellow)%>>(14,trunc)%D \
@@ -36,7 +36,7 @@ sed -e 's/*/●/g;
         s/ ago//g'
 #    -e 's|, origin/HEAD||'
 }
-lg() { lgb --branches --remotes=origin "$@"; }
+lgb() { lg --branches --remotes=origin "$@"; }
 l() { lg -n 7 "$@"; }
 
 alias s='git status --short'
