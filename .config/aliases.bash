@@ -4,6 +4,8 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+alias sudo='sudo ' # makes Bash expand the word after sudo if it's an alias: http://askubuntu.com/a/22043
+
 alias userstyles='objectpath --url https://widget.userstyles.org/users/24012.json --expr "sum($.*.total_installs) + 2608"'
 alias ff='ffmpeg -hide_banner'
 
