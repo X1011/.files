@@ -3,5 +3,11 @@ set -o errexit
 
 pacman --query --quiet --explicit > ~/bak/pkg-list.txt
 
-sudo gdrive sync upload --delete-extraneous ~    0B18ofr1i46T3OWNXaEEwdkdpck0
-sudo gdrive sync upload --delete-extraneous /etc 0B18ofr1i46T3VmIyMVdncFBKbFU
+args="$@"
+sync() {
+	sudo gdrive sync upload --delete-extraneous "$@" $args \
+	| sed -e '/] Uploading/ s/ -> .*//'
+}
+
+sync ~    0B18ofr1i46T3OWNXaEEwdkdpck0
+sync /etc 0B18ofr1i46T3VmIyMVdncFBKbFU
