@@ -10,4 +10,6 @@ sync() {
 }
 
 sync ~    0B18ofr1i46T3OWNXaEEwdkdpck0
+# gdrive doesn't process .gdriveignore files in subdirectories, so i'm using a separate job here so the Chrome folder can have its own .gdriveignore
+sync ~/.config/google-chrome/Default 0B18ofr1i46T3N0lVUHFKQS1ONnc
 sync /etc 0B18ofr1i46T3VmIyMVdncFBKbFU
