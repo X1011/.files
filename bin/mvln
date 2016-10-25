@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 set +o errexit
 
+dest=${!#} #last arg (indirect reference to $#, which is the number of args)
 if [[ -f $dest ]]; then
 	echo last arg must be a directory >&2
 	exit 1
@@ -9,7 +10,7 @@ fi
 mkdir -p "$dest"
 mv "$@"
 
-dest=realpath "${!#}" #last arg (indirect reference to $#, which is the number of args)
+dest=realpath "$dest"
 
 for source in "${@:1: $# - 1}"; do #args from 1 to $# - 1
 	ln --symbolic "$dest/`basename "$source"`" "`dirname "$source"`"
