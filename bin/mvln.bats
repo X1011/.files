@@ -10,7 +10,12 @@ teardown() {
 }
 
 @test "moves and links across directories with absolute paths" {
+	mkdir dir
+	touch file
 	
+	mvln "$tmp"/file "$tmp"/dir
+	
+	[[ `readlink dir/file` = "$tmp"/file ]]
 }
 
 @test "works with relative paths" {
