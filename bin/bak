@@ -1,15 +1,28 @@
 #! /usr/bin/env bash
 set -o errexit
 
+rsync --archive --no-links --cvs-exclude --delete-excluded --inplace --progress --verbose --stats --human-readable --filter=dir-merge_.rsync-filter --link-dest=/ / ~dan/bak \
+	| egrep --invert-match \
+		-e '^skipping non-regular file' \
+		-e '^rsync: link ".*" => /(etc/|\.).* failed: Operation not permitted'
+
 pacman --query --quiet --explicit > ~/bak/pkg-list.txt
 
-args="$@"
-sync() {
-	sudo gdrive sync upload --delete-extraneous "$@" $args \
-	| sed -e '/] Uploading/ s/ -> .*//'
+rclone-bak() {
+	rclone --config=$HOME/.config/rclone/rclone.conf --verbose --drive-use-trash sync "$@" 2>&1 \
+	| egrep --invert-match \
+	-e 'Unchanged skipping' \
+	-e 'Size and modification time the same' \
+	-e 'Sending chunk' \
+	-e 'googleapi: Error 403: User rate limit exceeded, userRateLimitExceeded' \
+	-e ': Reducing sleep to' \
+	-e 'pacer: Rate limited, increasing sleep to ' \
+	-e ': (Sizes|Md5sums|Modification times) differ'\
+	-e ': (Finished r|R)eading '\
+	-e 'pacer: low level retry 1/10'\
+	-e '/\.config/xfce4/.+?: Size and MD5 of src and dst objects identical'
+	#-e '' \
+	#-e "Can't transfer non file/directory" \
 }
 
-sync ~    0B18ofr1i46T3OWNXaEEwdkdpck0
-# gdrive doesn't process .gdriveignore files in subdirectories, so i'm using a separate job here so the Chrome folder can have its own .gdriveignore
-sync ~/.config/google-chrome/Default 0B18ofr1i46T3N0lVUHFKQS1ONnc
-sync /etc 0B18ofr1i46T3VmIyMVdncFBKbFU
+rclone-bak ~/bak drive:bak/linux/arch
