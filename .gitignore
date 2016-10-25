@@ -1,6 +1,11 @@
-*
+/*
 !.bashrc
 !.gitignore
-!/bin
+
+!/bin/
 !/bin/*
-/bin/vendor
+/bin/vendor/
+
+!/.config/
+/.config/*
+!/.config/etc/
