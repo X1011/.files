@@ -25,9 +25,10 @@ map <silent> <M-k> :tabprevious<CR>
 imap <m-j> <c-o><m-j>
 imap <m-k> <c-o><m-k>
 
-nmap <C-s> :Update<CR>
+map <C-s> :Update<CR>
 imap <C-s> <c-o>:Update<CR>
 
+"to do: write this function to map and imap with <c-o>
 "function! nimap(
 
 "readline/emacs-like bindings for insert and command line
