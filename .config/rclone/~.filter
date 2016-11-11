@@ -1,0 +1,31 @@
++ /.atom/*.cson
+- /.atom/*
+
+- /.config/google-chrome-*
++ /.config/google-chrome/Default{,/Bookmarks*}
+
++ /databases
+#+ /databases/chrome-extension_fjnbnpbmkenffdnngjfgmeleoegfcffe_0/***
+
++ /Local Extension Settings
+#+ /Local Extension Settings/cfhdojbkjhnklbpkdaibdccddilifddb/***
+
++ /Local Storage
++ /Local Storage/chrome-extension_kniehgiejgnnpgojkdhhjbgbllnfkfdk_0.localstorage*
++ /Local Storage/http_www.twitch.tv_0.localstorage*
+
+- /.config/google-chrome/**
+
+- /.gnome/apps
+- /.local/share/applications/chrome-*.desktop
++ /.local/share/applications
+- /.local/share/*
+
++ /.ssh/id_rsa.pub
+- /.ssh/*
+
++ *.m3u
++ *.m3u8
++ *.xspf
++ *.pls
+- /music/*

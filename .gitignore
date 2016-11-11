@@ -9,3 +9,5 @@
 !/.config/
 /.config/*
 !/.config/etc/
+!/.config/rclone
+/.config/rclone/rclone.conf
