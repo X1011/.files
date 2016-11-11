@@ -1,12 +1,12 @@
 #! /usr/bin/env bash
 set -o errexit
 
-#pacman --query --quiet --explicit > ~/bak/pkg-list.txt
+pacman --query --quiet --explicit > ~/bak/pkg-list.txt
 
 pushd ~/.config/rclone >/dev/null
 
 rclone-bak() {
-	rclone --config=rclone.conf --verbose --drive-use-trash --delete-excluded --filter-from=global.filter sync "$@" 2>&1 \
+	rclone --config=rclone.conf --verbose --drive-use-trash --delete-excluded sync "$@" 2>&1 \
 	| egrep --invert-match \
 	-e 'Unchanged skipping' \
 	-e 'Size and modification time the same' \
@@ -14,15 +14,17 @@ rclone-bak() {
 	-e 'googleapi: Error 403: User rate limit exceeded, userRateLimitExceeded' \
 	-e ': Reducing sleep to' \
 	-e 'pacer: Rate limited, increasing sleep to ' \
-	-e ': (Sizes|Md5sums|Modification times) differ'\
-	-e ': (Finished r|R)eading '\
-	-e 'pacer: low level retry 1/10'\
-	-e '/\.config/xfce4/.+?: Size and MD5 of src and dst objects identical'
+	-e ': (Sizes|Md5sums|Modification times) differ' \
+	-e ': (Finished r|R)eading ' \
+	-e 'pacer: low level retry 1/10' \
+	-e '\.config/xfce4/.+?: Size and MD5 of src and dst objects identical' \
+	-e ': Excluded from sync \(and deletion\)' \
+	-e "Can't transfer non file/directory"
+	
 	#-e '' \
-	#-e "Can't transfer non file/directory" \
 }
 
-rclone-bak {,drive:bak/linux/arch}/etc --exclude-from=etc.exclude --max-size=640k "$@"
-rclone-bak {,drive:bak/linux/arch/}~   --exclude-from=./~.exclude --filter-from=./~.filter "$@"
+rclone-bak {,drive:bak/linux}/etc --include-from=etc.include "$@" | tee etc.log
+rclone-bak {,drive:bak/linux/}~   --filter-from=./~.filter   "$@" | tee ~.log
 
 popd >/dev/null

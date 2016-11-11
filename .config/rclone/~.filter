@@ -1,31 +1,77 @@
+- /.avfs/**
+- /.cache/**
+- /.config/Atom/**
+- /.config/HackHands/**
+- /.config/obs-studio/logs/**
+- /.config/obs-studio/profiler_data/**
+- /.config/Popcorn-Time/**
+- /.config/pulse/**
+- /.config/scribes/**
+- /.config/smplayer/file_settings/**
+- /.emacs.d/**
+- /.gdrive/**
+- /.gstreamer-*/**
+- /.lastpass/**
+- /.mozilla/**
+- /.node-gyp/**
+- /.npm/**
+- /.openjazz/**
+- /.phoronix-test-suite/**
+- /.smartgit/**
+- /.steam/**
+- /.thumbnails/**
+- /.wine*/**
+
+- /.config/rclone/*.log
+- /.steampath
+- /.xfce4-session.verbose-log*
+- /.xsession-errors*
+
+- /bin/vendor/livestreamer/**
+- /desktop/**
+- /documents/**
+- /downloads/**
+- /drive/**
+- /mega/**
+- /pictures/**
+- /videos/**
+- /jungledisk*/**
+
+
+- *.lock
+- *.cache
+- .*.sw[pqr]
+
+- .git/**
+- [cC]ache/**
+
 + /.atom/*.cson
-- /.atom/*
+- /.atom/**
 
-- /.config/google-chrome-*
-+ /.config/google-chrome/Default{,/Bookmarks*}
+- /.config/{,.}google-chrome[-.]**
 
-+ /databases
-#+ /databases/chrome-extension_fjnbnpbmkenffdnngjfgmeleoegfcffe_0/***
++ /.config/google-chrome/Default/Bookmarks*
 
-+ /Local Extension Settings
-#+ /Local Extension Settings/cfhdojbkjhnklbpkdaibdccddilifddb/***
+# stylish
++ /.config/google-chrome/Default/IndexedDB/chrome-extension_fjnbnpbmkenffdnngjfgmeleoegfcffe_**
 
-+ /Local Storage
-+ /Local Storage/chrome-extension_kniehgiejgnnpgojkdhhjbgbllnfkfdk_0.localstorage*
-+ /Local Storage/http_www.twitch.tv_0.localstorage*
+# SimpleExtManager, reddit enhancement suite 
++ /.config/google-chrome/Default/Local Storage/chrome-extension_{kniehgiejgnnpgojkdhhjbgbllnfkfdk,kbmfpngjjgdllneeigpgjifpgocmfgmb}_*
+# BTTV & FFZ
++ /.config/google-chrome/Default/Local Storage/http_www.twitch.tv_*
 
 - /.config/google-chrome/**
 
-- /.gnome/apps
+- /.gnome/apps/**
 - /.local/share/applications/chrome-*.desktop
-+ /.local/share/applications
-- /.local/share/*
++ /.local/share/applications/**
+- /.local/share/**
 
 + /.ssh/id_rsa.pub
-- /.ssh/*
+- /.ssh/**
 
 + *.m3u
 + *.m3u8
 + *.xspf
 + *.pls
-- /music/*
+- /music/**

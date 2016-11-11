@@ -11,3 +11,4 @@
 !/.config/etc/
 !/.config/rclone
 /.config/rclone/rclone.conf
+/.config/rclone/*.log
