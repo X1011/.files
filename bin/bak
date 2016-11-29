@@ -8,15 +8,14 @@ pushd ~/.config/rclone >/dev/null
 rclone-bak() {
 	rclone --config=rclone.conf --verbose --drive-use-trash --delete-excluded sync "$@" 2>&1 \
 	| egrep --invert-match \
+	-e ': (Finished r|R)eading ' \
+	-e 'pacer: Rate limited, ' \
+	-e 'pacer: Resetting sleep to minimum ' \
+	-e 'pacer: low level retry ' \
 	-e 'Unchanged skipping' \
 	-e 'Size and modification time the same' \
 	-e 'Sending chunk' \
-	-e 'googleapi: Error 403: User rate limit exceeded, userRateLimitExceeded' \
-	-e ': Reducing sleep to' \
-	-e 'pacer: Rate limited, increasing sleep to ' \
 	-e ': (Sizes|Md5sums|Modification times) differ' \
-	-e ': (Finished r|R)eading ' \
-	-e 'pacer: low level retry 1/10' \
 	-e '\.config/xfce4/.+?: Size and MD5 of src and dst objects identical' \
 	-e ': Excluded from sync \(and deletion\)' \
 	-e "Can't transfer non file/directory"
