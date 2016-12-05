@@ -1,6 +1,7 @@
 - /.avfs/**
 - /.cache/**
 - /.config/Atom/**
+- /.config/Clementine/spotifyblob/**
 - /.config/HackHands/**
 - /.config/obs-studio/logs/**
 - /.config/obs-studio/profiler_data/**
@@ -12,7 +13,7 @@
 - /.gdrive/**
 - /.gstreamer-*/**
 - /.lastpass/**
-- /.mozilla/**
+- /.macromedia/**
 - /.node-gyp/**
 - /.npm/**
 - /.openjazz/**
@@ -35,7 +36,7 @@
 - /mega/**
 - /pictures/**
 - /videos/**
-- /jungledisk*/**
+- /jungledisk**
 
 
 - *.lock
@@ -47,6 +48,11 @@
 
 + /.atom/*.cson
 - /.atom/**
+
++ /.mozilla/firefox/dan/{addons.json,extensions.json,places.sqlite,prefs.js,stylish.sqlite,bookmarkbackups/**,browser-extension-data/**,s3menuwizard/**,sessionstore-backups/**}
+- /.mozilla/firefox/dan/jetpack/support@lastpass.com/**
++ /.mozilla/firefox/dan/jetpack/**
+- /.mozilla/**
 
 - /.config/{,.}google-chrome[-.]**
 
