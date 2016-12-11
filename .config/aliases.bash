@@ -21,8 +21,8 @@ id() {
 	whatis "$@" 2>/dev/null ||
 	which "$@"
 }
-sgv() { gksudo gvim "$@" & }
-gv() { gvim "$@" & }
+alias sgv="gksudo gvim"
+alias gv=gvim
 me() { medit "$@" & }
 alias rcl="rclone --config=$HOME/.config/rclone/rclone.conf --drive-use-trash --verbose"
 alias cpr='cp --reflink=auto --archive'
