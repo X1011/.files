@@ -8,7 +8,10 @@
 
 !/.config/
 /.config/*
+
 !/.config/etc/
+/.config/etc/removed/
+
 !/.config/rclone
 /.config/rclone/rclone.conf
 /.config/rclone/*.log
