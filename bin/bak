@@ -8,6 +8,11 @@ pushd ~/.config/rclone >/dev/null
 rclone-bak() {
 	rclone --config=rclone.conf --verbose --drive-use-trash --delete-excluded sync "$@" 2>&1 \
 	| egrep --invert-match \
+	-e ': Saving new token in config file' \
+	-e ': Modify window is 1ms' \
+	-e ': Waiting for (checks|transfers) to finish' \
+	-e ': Size and MD5 of src and dst objects identical' \
+	-e ': Hash differ' \
 	-e ': (Finished r|R)eading ' \
 	-e 'pacer: Rate limited, ' \
 	-e 'pacer: Resetting sleep to minimum ' \
@@ -16,7 +21,6 @@ rclone-bak() {
 	-e 'Size and modification time the same' \
 	-e 'Sending chunk' \
 	-e ': (Sizes|Md5sums|Modification times) differ' \
-	-e '\.config/xfce4/.+?: Size and MD5 of src and dst objects identical' \
 	-e ': Excluded from sync \(and deletion\)' \
 	-e "Can't transfer non file/directory"
 	
