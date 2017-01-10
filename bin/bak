@@ -5,13 +5,17 @@ pacman --query --quiet --explicit > ~/bak/pkg-list.txt
 
 pushd ~/.config/rclone >/dev/null
 
-rclone-bak() {
-	rclone --config=rclone.conf --verbose --drive-use-trash --delete-excluded sync "$@"
+rclone-confd() {
+	rclone --config=rclone.conf --verbose --drive-use-trash "$@"
 }
 
 (
-	rclone-bak {,drive:bak/linux}/etc --include-from=etc.include "$@"
-	rclone-bak {,drive:bak/linux/}~   --filter-from=./~.filter   "$@"
+	rclone-confd sync {,drive:bak/linux}/etc --delete-excluded \
+		--include-from=etc.include "$@"
+	rclone-confd sync {,drive:bak/linux/}~   --delete-excluded \
+		--filter-from=./~.filter \
+		--filter-from=global.filter "$@"
+	rclone-confd copy ~/drive drive: --filter-from=global.filter --no-traverse "$@"
 ) |& stdbuf --output=L egrep --invert-match \
 #  ↑ redirect stderr, too, because that's where rclone outputs the verbose logs
 #    ↑ use line-buffed output. otherwise, we don't see any output through tee until the buffer (usually 4K) fills up

@@ -1,0 +1,7 @@
+- *.lock
+- *.cache
+- .*.sw[pqr]
+
+- .git/**
+- [cC]ache/**
+- node_modules/**

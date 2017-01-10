@@ -23,7 +23,9 @@
 - /.thumbnails/**
 - /.wine*/**
 
+- /.babel.json
 - /.config/rclone/*.log
+- /.ICEauthority
 - /.steampath
 - /.xfce4-session.verbose-log*
 - /.xsession-errors*
@@ -38,13 +40,6 @@
 - /videos/**
 - /jungledisk**
 
-
-- *.lock
-- *.cache
-- .*.sw[pqr]
-
-- .git/**
-- [cC]ache/**
 
 + /.atom/*.cson
 - /.atom/**
