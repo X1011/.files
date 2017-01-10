@@ -32,12 +32,12 @@ lg() { git log --graph --abbrev-commit --word-diff=color --pretty="\
 %C(blue bold)%>>(9,trunc)%an \
 %Creset%Cblue%h\
 %Creset" "$@" |
-sed -e 's/*/●/g;
+sed -e 's/*/•/g;
         s/ ago//g'
 #    -e 's|, origin/HEAD||'
 }
-lgb() { lg --branches --remotes=origin "$@"; }
 l() { lg -n 7 "$@"; }
+lb() { l --branches --remotes=origin "$@"; }
 
 alias s='git status --short'
 alias d='git diff --word-diff=color'
