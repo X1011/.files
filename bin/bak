@@ -16,9 +16,10 @@ rclone-confd() {
 		--filter-from=./~.filter \
 		--filter-from=global.filter "$@"
 	rclone-confd copy ~/drive drive: --filter-from=global.filter --no-traverse "$@"
+
+#  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
+#    ↓ use line-buffed output. otherwise, we don't see any output through tee until the buffer (usually 4K) fills up
 ) |& stdbuf --output=L egrep --invert-match \
-#  ↑ redirect stderr, too, because that's where rclone outputs the verbose logs
-#    ↑ use line-buffed output. otherwise, we don't see any output through tee until the buffer (usually 4K) fills up
   -e ': Saving new token in config file' \
   -e ': Modify window is 1ms' \
   -e ': Waiting for (checks|transfers) to finish' \
