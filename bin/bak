@@ -6,28 +6,32 @@ pacman --query --quiet --explicit > ~/bak/pkg-list.txt
 pushd ~/.config/rclone >/dev/null
 
 rclone-bak() {
-	rclone --config=rclone.conf --verbose --drive-use-trash --delete-excluded sync "$@" 2>&1 \
-	| egrep --invert-match \
-	-e ': Saving new token in config file' \
-	-e ': Modify window is 1ms' \
-	-e ': Waiting for (checks|transfers) to finish' \
-	-e ': Size and MD5 of src and dst objects identical' \
-	-e ': Hash differ' \
-	-e ': (Finished r|R)eading ' \
-	-e 'pacer: Rate limited, ' \
-	-e 'pacer: Resetting sleep to minimum ' \
-	-e 'pacer: low level retry ' \
-	-e 'Unchanged skipping' \
-	-e 'Size and modification time the same' \
-	-e 'Sending chunk' \
-	-e ': (Sizes|Md5sums|Modification times) differ' \
-	-e ': Excluded from sync \(and deletion\)' \
-	-e "Can't transfer non file/directory"
-	
-	#-e '' \
+	rclone --config=rclone.conf --verbose --drive-use-trash --delete-excluded sync "$@"
 }
 
-rclone-bak {,drive:bak/linux}/etc --include-from=etc.include "$@" | tee etc.log
-rclone-bak {,drive:bak/linux/}~   --filter-from=./~.filter   "$@" | tee ~.log
+(
+	rclone-bak {,drive:bak/linux}/etc --include-from=etc.include "$@"
+	rclone-bak {,drive:bak/linux/}~   --filter-from=./~.filter   "$@"
+) |& stdbuf --output=L egrep --invert-match \
+#  ↑ redirect stderr, too, because that's where rclone outputs the verbose logs
+#    ↑ use line-buffed output. otherwise, we don't see any output through tee until the buffer (usually 4K) fills up
+  -e ': Saving new token in config file' \
+  -e ': Modify window is 1ms' \
+  -e ': Waiting for (checks|transfers) to finish' \
+  -e ': Size and MD5 of src and dst objects identical' \
+  -e ': Hash differ' \
+  -e ': (Finished r|R)eading ' \
+  -e 'pacer: Rate limited, ' \
+  -e 'pacer: Resetting sleep to minimum ' \
+  -e 'pacer: low level retry ' \
+  -e 'Unchanged skipping' \
+  -e 'Size and modification time the same' \
+  -e 'Sending chunk' \
+  -e ': (Sizes|Md5sums|Modification times) differ' \
+  -e ': Excluded from sync \(and deletion\)' \
+  -e "Can't transfer non file/directory" \
+| tee bak.log
+
+#-e '' \
 
 popd >/dev/null
