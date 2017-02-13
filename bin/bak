@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 set -o errexit
 
-pacman --query --quiet --explicit > ~/bak/pkg-list.txt
+pacman --query --quiet --explicit > ~/drive/bak/linux/pkg-list.txt
 
 pushd ~/.config/rclone >/dev/null
 
