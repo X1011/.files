@@ -22,19 +22,17 @@ rclone-confd() {
 ) |& stdbuf --output=L egrep --invert-match \
   -e ': Saving new token in config file' \
   -e ': Modify window is 1ms' \
+  -e ': (Finished r|R)eading ' \
   -e ': Waiting for (checks|transfers) to finish' \
   -e ': Size and MD5 of src and dst objects identical' \
-  -e ': Hash differ' \
-  -e ': (Finished r|R)eading ' \
+  -e ': Unchanged skipping' \
+  -e ': Excluded from sync \(and deletion\)' \
+  -e ': Copied \(replaced existing\)' \
+  -e "Can't transfer non file/directory" \
   -e 'pacer: Rate limited, ' \
   -e 'pacer: Resetting sleep to minimum ' \
   -e 'pacer: low level retry ' \
-  -e 'Unchanged skipping' \
-  -e 'Size and modification time the same' \
   -e 'Sending chunk' \
-  -e ': (Sizes|Md5sums|Modification times) differ' \
-  -e ': Excluded from sync \(and deletion\)' \
-  -e "Can't transfer non file/directory" \
 | tee bak.log
 
 #-e '' \
