@@ -15,4 +15,5 @@
 /pacman.conf*
 /phoronix-test-suite.xml
 /resolv.conf
+/sane.d/{dll,epkowa}.conf
 /vconsole.conf
