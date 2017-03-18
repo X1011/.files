@@ -14,8 +14,8 @@ alias fe='git fetch'
 alias b='git branch'
 alias bv='git branch -vv'
 suo() {
-    local branch=${1:-$(git rev-parse --abbrev-ref HEAD)}
-    git branch "$branch" --set-upstream-to "origin/$branch"
+	local branch=${1:-$(git rev-parse --abbrev-ref HEAD)}
+	git branch "$branch" --set-upstream-to "origin/$branch"
 }
 
 alias ch='git checkout'
@@ -33,14 +33,15 @@ lg() { git log --graph --abbrev-commit --word-diff=color --pretty="\
 %Creset%Cblue%h\
 %Creset" "$@" |
 sed -e 's/*/•/g;
-        s/ ago//g'
+        s/ ago//g;
+        s/\t/    /g'
 #    -e 's|, origin/HEAD||'
 }
 l() { lg -n 7 "$@"; }
 lb() { l --branches --remotes=origin "$@"; }
 
 alias s='git status --short'
-alias d='git diff --word-diff=color'
+d() { git diff --word-diff=color "$@" | sed -e 's/\t/    /g'; }
 alias dp='d HEAD^'
 alias dpc='dp HEAD'
 alias dor='d origin' #don't use 'do'; it's a reserved word
@@ -82,7 +83,7 @@ alias rs=' rb --skip'
 alias mg='git merge'
 alias ma='git merge --abort'
 merge-master() {
-    local branch=`git rev-parse --abbrev-ref HEAD`
-    git checkout master
-    git merge "$@" "$branch"
+	local branch=`git rev-parse --abbrev-ref HEAD`
+	git checkout master
+	git merge "$@" "$branch"
 }
