@@ -1,0 +1,11 @@
+#! /usr/bin/env sh
+# kills the process using the most memory
+
+# -A: list all processes
+# sort in reverse order of resident set size
+# set column size to 1 so ps doesn't output any leading spaces
+pid=`ps -A --sort -rss --format pid:1 --no-headers | head -n1`
+
+kill $pid
+sleep 15 # give it a chance to exit gracefully
+kill -9 $pid # otherwise, kill forcefully
