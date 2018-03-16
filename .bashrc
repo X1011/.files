@@ -2,6 +2,9 @@
 # Test for an interactive shell.  There is no need to set anything past this point for scp and rcp, and it's important to refrain from outputting anything in those cases.
 [[ $- != *i* ]] && return
 
+# Task Spooler: http://viric.name/soft/ts/
+export TS_ONFINISH=notify-send
+
 source ~/.config/aliases.bash
 
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH; }
