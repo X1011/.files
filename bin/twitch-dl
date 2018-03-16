@@ -1,18 +1,20 @@
 #! /usr/bin/env bash
-set -o pipefail
+set -o errexit
 
 if [[ $1 = -h ]]; then
-	echo "twitch-dl id [ start-time [ (multi-word) name ]]"
-	echo '               start-time is an integer'
+	echo twitch-dl <id> <start-time> <(multi-word) title>
 	exit 0
 fi
 
-[[ $2 ]] && (( $2 > 0 )) && time="--hls-start-time $2"
-             # livestreamer will choke if given a start time of 0
+id=$1
+time=$2
+title=${*:3} # use 3rd arg+
 
-name="${*:3}" # use 3rd arg+
-name="${name:-$1}" # if not given, use id given as 1st arg
+dir="$title ${time//:/.}" # replace :s for Windows filesystem compatability
+mkdir -p "$dir"
+pushd "$dir" >/dev/null
+set +o errexit # still popd if the download fails
 
-livestreamer $time --hls-segment-threads 5 twitch.tv/foo/v/$1 best --stdout \
-| ffmpeg -hide_banner -i - -codec copy -bsf:a aac_adtstoasc "$name.mkv"
+time twitch_vod_fetch https://twitch.tv/videos/$id vid --start-pos $time --keep-tempfiles --create-part-file --aria2c-opts '--max-concurrent-downloads=10 --lowest-speed-limit=10K'
 
+popd >/dev/null
