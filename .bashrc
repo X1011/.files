@@ -22,10 +22,9 @@ shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar histappe
 HISTCONTROL=ignoredups
 HISTSIZE=1000
 
-source /usr/share/doc/pkgfile/command-not-found.bash
-
 export MARKER_KEY_MARK='\em'
-source ~/.local/share/marker/marker.sh
+marker_sh=~/.local/share/marker/marker.sh
+[[ -f $marker_sh ]] && source "$marker_sh"
 
 # Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -73,18 +72,21 @@ bpurple='\e[1;35m'
 bcyan=$'\e[1;36m'
 bwhite='\e[1;37m'
 
-source /usr/share/git/completion/git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-GIT_PS1_SHOWCOLORHINTS=true
-GIT_PS1_SHOWUPSTREAM=verbose
-GIT_PS1_DESCRIBE_STYLE=branch
+git_prompt=/usr/lib/git-core/git-sh-prompt
+if [[ -f $git_prompt ]]; then
+	source "$git_prompt"
+	GIT_PS1_SHOWDIRTYSTATE=true
+	GIT_PS1_SHOWSTASHSTATE=true
+	GIT_PS1_SHOWUNTRACKEDFILES=true
+	GIT_PS1_SHOWCOLORHINTS=true
+	GIT_PS1_SHOWUPSTREAM=verbose
+	GIT_PS1_DESCRIBE_STYLE=branch
 
-PS1='`__git_ps1 "%s " | sed -e "s/master[ \|]\|u= //g"`\
-\[$bcyan\]\$ \[$color_off\]'
+	PS1='`__git_ps1 "%s " | sed -e "s/master[ \|]\|u= //g"`\
+	\[$bcyan\]\$ \[$color_off\]'
 
-unset PROMPT_COMMAND
+	unset PROMPT_COMMAND
+fi
 
 title() {
 	echo -ne "\e]2;"
