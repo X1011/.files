@@ -89,7 +89,7 @@ unset PROMPT_COMMAND
 title() {
 	echo -ne "\e]2;"
 	pwd-abbrev
-	echo -n " $BASH_COMMAND"
+	echo -n " \$ $BASH_COMMAND"
 	echo -ne "\a"
 }
 
