@@ -1,3 +1,0 @@
-[submodule "marker"]
-	path = .local/share/marker/repo
-	url = git://github.com/pindexis/marker

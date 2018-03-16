@@ -22,8 +22,11 @@ shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar histappe
 HISTCONTROL=ignoredups
 HISTSIZE=1000
 
+# https://github.com/pindexis/marker
 export MARKER_KEY_MARK='\em'
-marker_sh=~/.local/share/marker/marker.sh
+export MARKER_DATA_HOME=~/.config/marker
+#export MARKER_HOME=
+marker_sh="$MARKER_HOME/bin/marker.sh"
 [[ -f $marker_sh ]] && source "$marker_sh"
 
 # Less Colors for Man Pages
