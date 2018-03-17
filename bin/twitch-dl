@@ -2,7 +2,7 @@
 set -o errexit
 
 if [[ $1 = -h ]]; then
-	echo twitch-dl <id> <start-time> <(multi-word) title>
+	echo 'twitch-dl <id> <start-time> <(multi-word) title>'
 	exit 0
 fi
 
@@ -10,7 +10,7 @@ id=$1
 time=$2
 title=${*:3} # use 3rd arg+
 
-dir="$title ${time//:/.}" # replace :s for Windows filesystem compatability
+dir="$title"
 mkdir -p "$dir"
 pushd "$dir" >/dev/null
 set +o errexit # still popd if the download fails
