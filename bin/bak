@@ -5,35 +5,24 @@ pacman --query --quiet --explicit > ~/drive/bak/linux/pkg-list.txt
 
 pushd ~/.config/rclone >/dev/null
 
-rclone-confd() {
-	rclone --config=rclone.conf --verbose --drive-use-trash "$@"
+rclone-opt() {
+	rclone --verbose --copy-links "$@"
 }
 
 (
-	rclone-confd sync {,drive:bak/linux}/etc --delete-excluded \
+	rclone-opt sync {,drive:bak/linux}/etc --delete-excluded \
 		--include-from=etc.include "$@"
-	rclone-confd sync {,drive:bak/linux/}~   --delete-excluded \
+	rclone-opt sync {,drive:bak/linux/}~   --delete-excluded \
 		--filter-from=./~.filter \
 		--filter-from=global.filter "$@"
-	rclone-confd copy ~/drive drive: --filter-from=global.filter --no-traverse "$@"
+	rclone-opt copy ~/drive drive: --filter-from=global.filter "$@"
 
 #  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
 ) |& tee bak.log \
 | egrep --invert-match \
   -e ': Saving new token in config file' \
   -e ': Modify window is 1ms' \
-  -e ': (Finished r|R)eading ' \
-  -e ': Waiting for (checks|transfers) to finish' \
-  -e ': Size and MD5 of src and dst objects identical' \
-  -e ': Unchanged skipping' \
-  -e ': Excluded from sync \(and deletion\)' \
-  -e ': Copied \(replaced existing\)' \
   -e "Can't transfer non file/directory" \
-  -e 'pacer: Rate limited, ' \
-  -e 'pacer: Resetting sleep to minimum ' \
-  -e 'pacer: low level retry ' \
-  -e 'Sending chunk' \
-
-#-e '' \
+#  -e ': Updated modification time in destination' \
 
 popd >/dev/null
