@@ -18,8 +18,8 @@ rclone-confd() {
 	rclone-confd copy ~/drive drive: --filter-from=global.filter --no-traverse "$@"
 
 #  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
-#    ↓ use line-buffed output. otherwise, we don't see any output through tee until the buffer (usually 4K) fills up
-) |& stdbuf --output=L egrep --invert-match \
+) |& tee bak.log \
+| egrep --invert-match \
   -e ': Saving new token in config file' \
   -e ': Modify window is 1ms' \
   -e ': (Finished r|R)eading ' \
@@ -33,7 +33,6 @@ rclone-confd() {
   -e 'pacer: Resetting sleep to minimum ' \
   -e 'pacer: low level retry ' \
   -e 'Sending chunk' \
-| tee bak.log
 
 #-e '' \
 
