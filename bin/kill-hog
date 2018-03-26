@@ -6,5 +6,5 @@
 pid=`ps -A --sort -rss --format pid --no-headers | head -n1`
 
 kill $pid
-sleep 15 # give it a chance to exit gracefully
+sleep 10 # give it a chance to exit gracefully
 kill -9 $pid # otherwise, kill forcefully
