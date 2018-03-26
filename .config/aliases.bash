@@ -46,7 +46,7 @@ alias pu="pa -Su"
 alias ppu="sudo powerpill -Su"
 alias pcu="pacaur -Sau"
 
-alias i="ls --color=auto --human-readable"
+alias i="ls --color=auto --si"
 alias ii="i -l"
 alias ia="i -a"
 alias iia="i -la"
