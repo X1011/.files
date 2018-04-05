@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 set -o errexit
 
-pacman --query --quiet --explicit > ~/drive/bak/linux/pkg-list.txt
+apt-mark showmanual > ~/drive/bak/linux/debian/package-list.txt
 
 pushd ~/.config/rclone >/dev/null
 
@@ -10,9 +10,9 @@ rclone-opt() {
 }
 
 (
-	rclone-opt sync {,drive:bak/linux}/etc --delete-excluded \
+	rclone-opt sync {,drive:bak/linux/debian}/etc --delete-excluded \
 		--include-from=etc.include "$@"
-	rclone-opt sync {,drive:bak/linux/}~   --delete-excluded \
+	rclone-opt sync {,drive:bak/linux/debian/}~   --delete-excluded \
 		--filter-from=./~.filter \
 		--filter-from=global.filter "$@"
 	rclone-opt copy ~/drive drive: --filter-from=global.filter "$@"

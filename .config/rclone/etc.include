@@ -1,8 +1,4 @@
 /cron.d/**
-/grub.d/**
-/powerpill/**
-/systemd/**
-/X11/**
 
 /asd.conf*
 /fstab
@@ -10,9 +6,7 @@
 /hostname
 /hosts
 /locale.conf
-/makepkg.conf*
 /mkinitcpio.conf
-/pacman.conf*
 /phoronix-test-suite.xml
 /resolv.conf
 /sane.d/{dll,epkowa}.conf

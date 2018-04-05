@@ -1,35 +1,47 @@
+- /.AndroidStudio*/**
 - /.avfs/**
+- /.Bytecode-Viewer/**
 - /.cache/**
+- /.charles/**
+- /.cinnamon/spices.cache/**
 - /.config/Atom/**
-- /.config/Clementine/spotifyblob/**
-- /.config/HackHands/**
+- /.config/brave/**
+- /.config/libreoffice/**
 - /.config/obs-studio/logs/**
 - /.config/obs-studio/profiler_data/**
-- /.config/Popcorn-Time/**
 - /.config/pulse/**
-- /.config/scribes/**
+- /.config/resilio-sync/**
+- /.config/skypeforlinux/**
 - /.config/smplayer/file_settings/**
 - /.emacs.d/**
 - /.gdrive/**
+- /.gradle/**
 - /.gstreamer-*/**
+- /.java/**
 - /.lastpass/**
 - /.macromedia/**
+- /.mitmproxy/**
 - /.node-gyp/**
 - /.npm/**
 - /.openjazz/**
 - /.phoronix-test-suite/**
-- /.smartgit/**
+- /.purple/**
 - /.steam/**
+- /.subversion/**
+- /.themes/**
 - /.thumbnails/**
 - /.wine*/**
+- /.zoom/**
 
 - /.babel.json
 - /.config/rclone/*.log
 - /.ICEauthority
 - /.steampath
+- /.Xauthority
 - /.xfce4-session.verbose-log*
 - /.xsession-errors*
 
+- /android/**
 - /bin/vendor/livestreamer/**
 - /desktop/**
 - /documents/**
@@ -38,8 +50,9 @@
 - /mega/**
 - /pictures/**
 - /podcast/**
-- /videos/**
+- /video/**
 - /jungledisk**
+- /ziggy*/**
 
 
 + /.atom/*.cson
@@ -54,13 +67,11 @@
 
 + /.config/google-chrome/Default/Bookmarks*
 
-# stylish
-+ /.config/google-chrome/Default/IndexedDB/chrome-extension_fjnbnpbmkenffdnngjfgmeleoegfcffe_**
+# Stylus
++ /.config/google-chrome/Default/IndexedDB/chrome-extension_clngdbkpkpeebahjckkjfobafhncgmne_**
 
-# SimpleExtManager, reddit enhancement suite 
-+ /.config/google-chrome/Default/Local Storage/chrome-extension_{kniehgiejgnnpgojkdhhjbgbllnfkfdk,kbmfpngjjgdllneeigpgjifpgocmfgmb}_*
 # BTTV & FFZ
-+ /.config/google-chrome/Default/Local Storage/http_www.twitch.tv_*
++ /.config/google-chrome/Default/IndexedDB/https_www.twitch.tv_**
 
 - /.config/google-chrome/**
 
