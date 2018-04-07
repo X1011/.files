@@ -20,8 +20,7 @@ suo() {
 
 alias ch='git checkout'
 alias co='git checkout origin'
-alias reset='git reset'
-alias rs1='reset HEAD^'
+alias rs1='git reset HEAD^'
 
 alias log='git log --word-diff=color'
 alias lp='log --patch'
