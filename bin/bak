@@ -1,5 +1,4 @@
 #! /usr/bin/env bash
-set -o errexit
 
 apt-mark showmanual > ~/drive/bak/linux/debian/package-list.txt
 
