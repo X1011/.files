@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+apt-mark showmanual > ~/drive/bak/linux/debian/package-list.txt
+
+pushd ~/.config/rclone >/dev/null
+
+rclone-opt() {
+	rclone --verbose --copy-links "$@"
+}
+
+(
+	rclone-opt sync {,drive:bak/linux/debian}/etc --delete-excluded \
+		--include-from=etc.include "$@"
+	rclone-opt sync {,drive:bak/linux/debian/}~   --delete-excluded \
+		--filter-from=./~.filter \
+		--filter-from=global.filter "$@"
+	rclone-opt copy ~/drive drive: --filter-from=global.filter "$@"
+
+#  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
+) |& tee bak.log \
+| egrep --invert-match \
+  -e ': Saving new token in config file' \
+  -e ': Modify window is 1ms' \
+  -e "Can't transfer non file/directory" \
+#  -e ': Updated modification time in destination' \
+
+popd >/dev/null
