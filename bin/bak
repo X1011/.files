@@ -9,12 +9,12 @@ rclone-opt() {
 }
 
 (
-	rclone-opt sync {,drive:bak/linux/debian}/etc --delete-excluded \
+	rclone-opt sync {,drive-c:bak/linux/debian}/etc --delete-excluded \
 		--include-from=etc.include "$@"
-	rclone-opt sync {,drive:bak/linux/debian/}~   --delete-excluded \
+	rclone-opt sync {,drive-c:bak/linux/debian/}~ --delete-excluded \
 		--filter-from=./~.filter \
 		--filter-from=global.filter "$@"
-	rclone-opt copy ~/drive drive: --filter-from=global.filter "$@"
+	rclone-opt copy ~/drive drive-c: --filter-from=global.filter --cache-writes "$@"
 
 #  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
 ) |& tee bak.log \
@@ -22,6 +22,8 @@ rclone-opt() {
   -e ': Saving new token in config file' \
   -e ': Modify window is 1ms' \
   -e "Can't transfer non file/directory" \
+  -e ': put: cache expired' \
+  -e ': received cache expiry notification'
 #  -e ': Updated modification time in destination' \
 
 popd >/dev/null
