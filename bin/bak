@@ -1,20 +1,19 @@
 #! /usr/bin/env bash
 
-apt-mark showmanual > ~/drive/bak/linux/debian/package-list.txt
+apt-mark showmanual > ~/.config/package-list.txt
 
 pushd ~/.config/rclone >/dev/null
 
 rclone-opt() {
-	rclone --verbose --copy-links "$@"
+	rclone --verbose --delete-excluded --copy-links --fast-list --track-renames "$@"
 }
 
 (
-	rclone-opt sync {,drive:bak/linux/debian}/etc --delete-excluded \
+	rclone-opt sync {,drive:bak/linux/debian}/etc \
 		--include-from=etc.include "$@"
-	rclone-opt sync {,drive:bak/linux/debian/}~   --delete-excluded \
+	rclone-opt sync {,drive:bak/linux/debian/}~ \
 		--filter-from=./~.filter \
 		--filter-from=global.filter "$@"
-	rclone-opt copy ~/drive drive: --filter-from=global.filter "$@"
 
 #  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
 ) |& tee bak.log \
