@@ -1,6 +1,5 @@
 /cron.d/**
 
-/asd.conf*
 /fstab
 /group
 /hostname

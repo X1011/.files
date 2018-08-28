@@ -48,11 +48,11 @@
 - /downloads/**
 - /drive/**
 - /mega/**
-- /pictures/**
+- /images/**
+- /photos/**
 - /podcast/**
 - /video/**
 - /jungledisk**
-- /ziggy*/**
 
 
 + /.atom/*.cson
@@ -62,8 +62,6 @@
 - /.mozilla/firefox/dan/jetpack/support@lastpass.com/**
 + /.mozilla/firefox/dan/jetpack/**
 - /.mozilla/**
-
-- /.config/{,.}google-chrome[-.]**
 
 + /.config/google-chrome/Default/Bookmarks*
 
