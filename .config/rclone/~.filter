@@ -6,6 +6,7 @@
 - /.cinnamon/spices.cache/**
 - /.config/Atom/**
 - /.config/brave/**
+- /.config/google-chrome/**
 - /.config/libreoffice/**
 - /.config/obs-studio/logs/**
 - /.config/obs-studio/profiler_data/**
@@ -62,16 +63,6 @@
 - /.mozilla/firefox/dan/jetpack/support@lastpass.com/**
 + /.mozilla/firefox/dan/jetpack/**
 - /.mozilla/**
-
-+ /.config/google-chrome/Default/Bookmarks*
-
-# Stylus
-+ /.config/google-chrome/Default/IndexedDB/chrome-extension_clngdbkpkpeebahjckkjfobafhncgmne_**
-
-# BTTV & FFZ
-+ /.config/google-chrome/Default/IndexedDB/https_www.twitch.tv_**
-
-- /.config/google-chrome/**
 
 - /.gnome/apps/**
 - /.local/share/applications/chrome-*.desktop

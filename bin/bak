@@ -11,6 +11,7 @@ rc-sync() {
 (
 	rc-sync /etc etc --include-from=etc.include "$@"
 	rc-sync ~ \~ --filter-from=./~.filter --filter-from=global.filter "$@"
+	rc-sync ~/.config/google-chrome/Default chrome --include-from=chrome.include
 
 #  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
 ) |& tee bak.log \
