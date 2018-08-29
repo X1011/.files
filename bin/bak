@@ -4,16 +4,13 @@ apt-mark showmanual > ~/.config/package-list.txt
 
 pushd ~/.config/rclone >/dev/null
 
-rclone-opt() {
-	rclone --verbose --delete-excluded --copy-links --fast-list --track-renames "$@"
+rc-sync() {
+	rclone sync "$1" "drive:bak/linux/debian/$2" --verbose --delete-excluded --copy-links --fast-list --track-renames "${@:3}"
 }
 
 (
-	rclone-opt sync {,drive:bak/linux/debian}/etc \
-		--include-from=etc.include "$@"
-	rclone-opt sync {,drive:bak/linux/debian/}~ \
-		--filter-from=./~.filter \
-		--filter-from=global.filter "$@"
+	rc-sync /etc etc --include-from=etc.include "$@"
+	rc-sync ~ \~ --filter-from=./~.filter --filter-from=global.filter "$@"
 
 #  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
 ) |& tee bak.log \
