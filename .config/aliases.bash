@@ -4,12 +4,28 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+alias mv-metadata="PATH=/usr/local/bin:/usr/bin:/bin find . -name metadata -prune -o -type d -execdir bash -o nullglob -c '
+	cd \"{}\" && 
+	mkdir -p metadata && 
+	mv -t metadata/ *.json *.description *.jpg ' \;"
+alias rc-drive='rclone copy ~/drive drive: --verbose --fast-list --copy-links --filter-from=$HOME/.config/rclone/global.filter'
+alias rcm=rclone-cache-mount
+# not using Offline uploading (by --cache-tmp-upload-path), because modifications fail while file is being processed, and this messes up Chrome downloads (a.o. 2018-8-6)
+# don't use --vfs-read-chunk-size: it only affects bytes requested, not reads, so has no effect on cache remote (https://forum.rclone.org/t/new-feature-vfs-read-chunk-size/5683)
+alias rclone-cache-mount='rclone mount --vfs-cache-mode writes --rc --cache-writes "$@"'
+alias rcl='rclone --verbose --fast-list'
+
+alias pv='pv --progress --timer --eta --rate --average-rate --bytes --buffer-percent'
+alias t=touch
+
 alias tvod='time twitch_vod_fetch --create-part-file --aria2c-opts "--max-concurrent-downloads=5 --lowest-speed-limit=10K --rpc-listen-all"'
 alias ytdl-pl='youtube-dl --download-archive ~/video/downloaded.txt -o "~/video/%(playlist_title)s/%(playlist_index)s. %(uploader)s - %(title)s.%(ext)s"'
+
 alias sudo='sudo ' # makes Bash expand the word after sudo if it's an alias: http://askubuntu.com/a/22043
 alias userstyles='objectpath --url https://widget.userstyles.org/users/24012.json --expr "sum($.*.total_installs) + 2608"'
 alias ff='ffmpeg -hide_banner'
 alias ffp='ffprobe -hide_banner'
+alias ffpl='ffplay -hide_banner'
 filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard" ;}
 alias al=id
 id() {
@@ -25,7 +41,6 @@ id() {
 alias sgv="gksudo gvim"
 alias gv=gvim
 me() { medit "$@" & }
-alias rcl="rclone --config=$HOME/.config/rclone/rclone.conf --drive-use-trash --verbose"
 alias cpr='cp --reflink=auto --archive'
 alias sym="ln -s"
 
