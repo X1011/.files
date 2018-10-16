@@ -4,10 +4,11 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+metadata_files='*.json *.description *.jpg'
 alias mv-metadata="PATH=/usr/local/bin:/usr/bin:/bin find . -name metadata -prune -o -type d -execdir bash -o nullglob -c '
 	cd \"{}\" && 
 	mkdir -p metadata && 
-	mv -t metadata/ *.json *.description *.jpg ' \;"
+	[[ -n $metadata_files ]] && mv -t metadata/ $metadata_files' \;"
 alias rc-drive='rclone copy ~/drive drive: --verbose --fast-list --copy-links --filter-from=$HOME/.config/rclone/global.filter'
 alias rcm=rclone-cache-mount
 # not using Offline uploading (by --cache-tmp-upload-path), because modifications fail while file is being processed, and this messes up Chrome downloads (a.o. 2018-8-6)
