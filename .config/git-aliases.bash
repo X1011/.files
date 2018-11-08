@@ -25,16 +25,15 @@ alias rs1='git reset HEAD^'
 alias log='git log --word-diff=color'
 alias lp='log --patch'
 lg() { git log --graph --abbrev-commit --word-diff=color --pretty="\
-%Cgreen%>>|(12,trunc)%ad\
+%Cgreen%>>|(14,mtrunc)%ad\
 %Creset %<(50,trunc)%s\
-%C(yellow)%>>(14,trunc)%D \
+%C(yellow)%>>(14,trunc)%d \
 %C(blue bold)%>>(9,trunc)%an \
 %Creset%Cblue%h\
 %Creset" "$@" |
 sed -e 's/*/•/g;
         s/ ago//g;
         s/\t/    /g'
-#    -e 's|, origin/HEAD||'
 }
 l() { lg -n 7 "$@"; }
 lb() { l --branches --remotes=origin "$@"; }
@@ -44,7 +43,7 @@ d() { git diff --word-diff=color "$@" | sed -e 's/\t/    /g'; }
 alias dp='d HEAD^'
 alias dpc='dp HEAD'
 alias dor='d origin' #don't use 'do'; it's a reserved word
-alias t='d --cached'
+alias dca='d --cached'
 alias ds='git diff --stat'
 
 alias a='git add'
