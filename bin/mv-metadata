@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+base=${1%.*} # delete shortest .* from the end
+dir=`dirname "$base"`
+
+mkdir -p "$dir"
+mv "$base"{.info.json,.description,.jpg} "$dir"/metadata
