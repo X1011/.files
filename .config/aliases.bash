@@ -14,7 +14,8 @@ alias rcl='rclone --verbose --fast-list'
 alias pv='pv --progress --timer --eta --rate --average-rate --bytes --buffer-percent'
 alias t=touch
 
-alias tvod='time twitch_vod_fetch --create-part-file --aria2c-opts "--max-concurrent-downloads=5 --lowest-speed-limit=10K --rpc-listen-all"'
+alias tvod='tvodj 3'
+tvodj() { time twitch_vod_fetch --create-part-file --aria2c-opts "--max-concurrent-downloads=$1 --lowest-speed-limit=10K --rpc-listen-all" ;}
 
 alias ytname='youtube-dl -o "%(title)s.%(ext)s"'
 alias ytflat='youtube-dl -o "%(uploader)s - %(title)s.%(ext)s"'
