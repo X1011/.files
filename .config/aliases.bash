@@ -15,7 +15,7 @@ alias pv='pv --progress --timer --eta --rate --average-rate --bytes --buffer-per
 alias t=touch
 
 alias tvod='tvodj 3'
-tvodj() { time twitch_vod_fetch --create-part-file --aria2c-opts "--max-concurrent-downloads=$1 --lowest-speed-limit=10K --rpc-listen-all" ;}
+tvodj() { time twitch_vod_fetch --create-part-file --aria2c-opts "--max-concurrent-downloads=$1 --lowest-speed-limit=10K --rpc-listen-all" "${@:2}" ;}
 
 alias ytname='youtube-dl -o "%(title)s.%(ext)s"'
 alias ytflat='youtube-dl -o "%(uploader)s - %(title)s.%(ext)s"'
