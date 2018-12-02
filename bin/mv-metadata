@@ -3,5 +3,5 @@
 base=${1%.*} # delete shortest .* from the end
 dir=`dirname "$base"`
 
-mkdir -p "$dir"
+mkdir -p "$dir"/metadata
 mv "$base"{.info.json,.description,.jpg} "$dir"/metadata
