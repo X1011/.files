@@ -7,7 +7,7 @@ apt-mark showmanual > ~/.config/package-list.txt
 pushd ~/.config/rsync >/dev/null
 
 rsync-opt() {
-	rsync --verbose --human-readable --progress --archive --prune-empty-dirs "$@" --exclude-from global.exclude
+	rsync --itemize-changes --human-readable --progress --inplace --recursive --times --prune-empty-dirs "$@" --exclude-from global.exclude
 }
 
 (
