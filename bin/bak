@@ -16,9 +16,7 @@ rc-sync() {
 #  ↓ redirect stderr, too, because that's where rclone outputs the verbose logs
 ) |& tee bak.log \
 | egrep --invert-match \
-  -e ': Saving new token in config file' \
-  -e ': Modify window is 1ms' \
-  -e "Can't transfer non file/directory" \
-#  -e ': Updated modification time in destination' \
+  -e ': Updated modification time in destination' \
+#  -e ': Copied (replaced existing)' \
 
 popd >/dev/null
