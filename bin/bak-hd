@@ -13,7 +13,7 @@ rsync-opt() {
 (
 	rsync-opt {,"$dest/"}~/ --filter 'merge ./~.filter' --exclude-from ./~.exclude --delete-excluded "$@"
 	rsync-opt {/,"$dest/"}etc/ --filter 'merge etc.filter' --delete-excluded "$@"
-	rsync-opt ~/{video,'ziggy IX pics'} "$dest" "$@"
+	rsync-opt ~/{video,photos,games} "$dest" "$@"
 
 #  ↓ redirect stderr, too
 ) |& tee bak.log
