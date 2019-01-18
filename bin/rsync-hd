@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+rsync --itemize-changes --human-readable --progress --inplace --recursive --times --prune-empty-dirs "$@" --exclude-from=$HOME/.config/rsync/global.exclude
