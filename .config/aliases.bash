@@ -14,8 +14,11 @@ alias rcl='rclone --verbose --fast-list'
 alias pv='pv --progress --timer --eta --rate --average-rate --bytes --buffer-percent'
 alias t=touch
 
-alias tvod='tvodj 3'
-tvodj() { time twitch_vod_fetch --create-part-file --aria2c-opts "--max-concurrent-downloads=$1 --lowest-speed-limit=10K --rpc-listen-all" "${@:2}" ;}
+tvut() { tvutj 5 "$@" ;}
+# I think these are technically .ts files, but Google Photos doesn't accept them with that extension :\
+tvutj() { tvodj $1 -o "%(uploader)s/2018-$2 %(title)s.mts" "${@:3}" ;}
+tvod() { tvodj 5 "$@" ;}
+tvodj() { command time --format %E twitch_vod_fetch --aria2c-opts "max-concurrent-downloads=$1 lowest-speed-limit=10K rpc-listen-all" "${@:2}" ;}
 
 alias ytname='youtube-dl -o "%(title)s.%(ext)s"'
 alias ytflat='youtube-dl -o "%(uploader)s - %(title)s.%(ext)s"'
