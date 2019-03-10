@@ -3,17 +3,20 @@
 set -o errexit
 
 source ~/.config/aliases.bash
-old_m3u_size=0
-new_m3u_size=1
+
 # not just taking url as parameter because Twith puts a ? in the link, which would need to be quoted for the shell or removed, so it's easier to just copy and paste the id
 url=https://www.twitch.tv/videos/$1
+jobs=${2:-1} # parameter 2, or default to '1'
+
+old_m3u_size=0
+new_m3u_size=1
 
 while [[ $new_m3u_size -gt $old_m3u_size ]]; do
 	echo new: $new_m3u_size old: $old_m3u_size
 	old_m3u_size=$new_m3u_size
 	gvfs-trash --force vod-001.tmp/vod-001.m3u8
 	mv vod-001{,.part}.mp4 || true
-	tvodj 1 "$url" --keep-tempfiles --use-part-suffix
+	tvodj $jobs "$url" --keep-tempfiles --use-part-suffix
 	new_m3u_size=`stat vod-001.tmp/vod-001.m3u8 --format %s`
 done
 
