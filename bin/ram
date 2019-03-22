@@ -1,0 +1,7 @@
+#! /usr/bin/env sh
+# command to list 3 types of free memory: really free, available (including disk cache), and swap
+# for genmon panel plugin
+free --human | 
+tail -n +2 | #skip header line
+cut -c 37-40 | #3rd column: free memory
+paste --serial --delimiters=\  #join lines with spaces
