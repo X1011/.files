@@ -14,6 +14,10 @@ igs() { instaloader --stories --no-posts --filename-pattern='{date_utc:%Y-%m-%d 
 #--filename-pattern: date story / post
     #rename existing
 
+alias un='uname -rv'
+alias xz='xz --verbose'
+alias rhd=rsync-hd
+
 alias rc-drive='rcl copy ~/drive drive: --copy-links --filter-from=$HOME/.config/rclone/global.filter'
 alias rcm=rclone-cache-mount
 # not using Offline uploading (by --cache-tmp-upload-path), because modifications fail while file is being processed, and this messes up Chrome downloads (a.o. 2018-8-6)
@@ -21,8 +25,9 @@ alias rcm=rclone-cache-mount
 alias rclone-cache-mount='rclone mount --vfs-cache-mode writes --rc --cache-writes  --fast-list "$@"'
 alias rcl='rclone --verbose --fast-list --progress'
 
-alias pv='pv --progress --timer --eta --rate --average-rate --bytes --buffer-percent'
+alias pv='pv --progress --timer --eta --rate --average-rate --bytes'
 alias t=touch
+faketty() { script --flush --return --quiet --command "$(printf "%q " "$@")" /dev/null ;}
 
 tvut() { tvutj 5 "$@" ;}
 # I think these are technically .ts files, but Google Photos doesn't accept them with that extension :\
