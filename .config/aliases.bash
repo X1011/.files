@@ -59,7 +59,8 @@ id() {
 alias sgv="gksudo gvim"
 alias gv=gvim
 me() { medit "$@" & }
-alias cpr='cp --reflink=auto --archive'
+alias cpr='cp --reflink=always'
+alias cpa='cp --reflink=auto --archive'
 alias sym="ln -s"
 
 alias tra=gvfs-trash
