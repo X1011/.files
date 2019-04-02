@@ -4,6 +4,16 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+igs() { instaloader --stories --no-posts --filename-pattern='{date_utc:%Y-%m-%d %H.%M.%S}' --geotags --login x1011__ --sessionfile ~/.cache/instaloader-session --no-metadata-json "$@" | 
+	egrep --invert-match \
+	-e 'profile_pic\.jpg already exists' \
+	-e '^Logged in as ' \
+	-e '^Loaded session from ' \
+	-e '^Saved session to ' \
+;}
+#--filename-pattern: date story / post
+    #rename existing
+
 alias rc-drive='rclone copy ~/drive drive: --verbose --fast-list --copy-links --filter-from=$HOME/.config/rclone/global.filter'
 alias rcm=rclone-cache-mount
 # not using Offline uploading (by --cache-tmp-upload-path), because modifications fail while file is being processed, and this messes up Chrome downloads (a.o. 2018-8-6)
