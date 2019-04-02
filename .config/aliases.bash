@@ -14,12 +14,12 @@ igs() { instaloader --stories --no-posts --filename-pattern='{date_utc:%Y-%m-%d 
 #--filename-pattern: date story / post
     #rename existing
 
-alias rc-drive='rclone copy ~/drive drive: --verbose --fast-list --copy-links --filter-from=$HOME/.config/rclone/global.filter'
+alias rc-drive='rcl copy ~/drive drive: --copy-links --filter-from=$HOME/.config/rclone/global.filter'
 alias rcm=rclone-cache-mount
 # not using Offline uploading (by --cache-tmp-upload-path), because modifications fail while file is being processed, and this messes up Chrome downloads (a.o. 2018-8-6)
 # don't use --vfs-read-chunk-size: it only affects bytes requested, not reads, so has no effect on cache remote (https://forum.rclone.org/t/new-feature-vfs-read-chunk-size/5683)
-alias rclone-cache-mount='rclone mount --vfs-cache-mode writes --rc --cache-writes "$@"'
-alias rcl='rclone --verbose --fast-list'
+alias rclone-cache-mount='rclone mount --vfs-cache-mode writes --rc --cache-writes  --fast-list "$@"'
+alias rcl='rclone --verbose --fast-list --progress'
 
 alias pv='pv --progress --timer --eta --rate --average-rate --bytes --buffer-percent'
 alias t=touch
