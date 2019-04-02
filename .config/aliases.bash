@@ -29,9 +29,9 @@ alias pv='pv --progress --timer --eta --rate --average-rate --bytes'
 alias t=touch
 faketty() { script --flush --return --quiet --command "$(printf "%q " "$@")" /dev/null ;}
 
-tvut() { tvutj 5 "$@" ;}
-# I think these are technically .ts files, but Google Photos doesn't accept them with that extension :\
-tvutj() { tvodj $1 -o "%(uploader)s/2018-$2 %(title)s.mts" "${@:3}" ;}
+tvut() { tvu "$1 %(title)s" "${@:2}" ;}
+# these are mpegts files, but Google Photos doesn't accept them with .ts, nor even with .mts on Android
+tvu() { tvod -o "%(uploader)s/2019-$1.%(ext)s" "${@:2}" ;}
 tvod() { tvodj 5 "$@" ;}
 tvodj() { command time --format %E twitch_vod_fetch --aria2c-opts "max-concurrent-downloads=$1 lowest-speed-limit=10K rpc-listen-all" "${@:2}" ;}
 
