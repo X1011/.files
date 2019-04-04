@@ -4,7 +4,8 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
-igs() { instaloader --stories --no-posts --filename-pattern='{date_utc:%Y-%m-%d %H.%M.%S}' --geotags --login x1011__ --sessionfile ~/.cache/instaloader-session --no-metadata-json "$@" | 
+igs() { il '' --stories --no-posts --no-metadata-json "$@" ;}
+il() { instaloader --filename-pattern="{date_utc:%Y-%m-%d %H.%M.%S}$1" --geotags --login x1011__ --sessionfile ~/.cache/instaloader-session "${@:2}" | 
 	egrep --invert-match \
 	-e 'profile_pic\.jpg already exists' \
 	-e '^Logged in as ' \
