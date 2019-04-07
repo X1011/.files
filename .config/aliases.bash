@@ -4,6 +4,9 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+alias lc='wc --lines'
+h() { "$@" --help ;}
+
 igs() { il '' --stories --no-posts --no-metadata-json "$@" ;}
 il() { instaloader --filename-pattern="{date_utc:%Y-%m-%d %H.%M.%S}$1" --geotags --login x1011__ --sessionfile ~/.cache/instaloader-session "${@:2}" | 
 	egrep --invert-match \
