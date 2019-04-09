@@ -7,8 +7,8 @@ export TS_ONFINISH=notify-send
 
 source ~/.config/aliases.bash
 
-prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH; }
-prepend_path ~/bin:~/bin/vendor:node_modules/.bin:/opt/mktags/bin
+prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH ;}
+prepend_path $HOME/.local/apps/miniconda3/bin:$HOME/bin:$HOME/bin/vendor:node_modules/.bin
 
 export LESS='--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4'
 export VISUAL='gvim --nofork'
