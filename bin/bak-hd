@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 dest='/media/dan/External Backup'
+[[ -d $dest ]] || (echo $dest not mounted && exit 1)
 
 apt-mark showmanual > ~/.config/package-list.txt
 
