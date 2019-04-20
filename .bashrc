@@ -2,14 +2,12 @@
 # Test for an interactive shell.  There is no need to set anything past this point for scp and rcp, and it's important to refrain from outputting anything in those cases.
 [[ $- != *i* ]] && return
 
-# Task Spooler: http://viric.name/soft/ts/
-export TS_ONFINISH=notify-send
-
 source ~/.config/aliases.bash
 
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH ;}
 prepend_path $HOME/.local/apps/miniconda3/bin:$HOME/bin:$HOME/bin/vendor:node_modules/.bin
 
+export TS_ONFINISH=notify-send # Task Spooler: http://viric.name/soft/ts/
 export LESS='--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4'
 export VISUAL='gvim --nofork'
 export EDITOR="$VISUAL"
@@ -18,7 +16,7 @@ export TIGRC_USER=~/.config/tigrc
 export GITHUB_USER=X1011
 export CURL_HOME=~/.config
 
-shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar histappend xpg_echo
+shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar nullglob histappend xpg_echo
 HISTCONTROL=ignoredups
 HISTSIZE=1000
 
