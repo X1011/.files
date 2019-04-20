@@ -5,7 +5,7 @@ apt-mark showmanual > ~/.config/package-list.txt
 pushd ~/.config/rclone >/dev/null
 
 rc-sync() {
-	rclone sync "$1" "drive:bak/linux/debian/$2" --verbose --delete-excluded --copy-links --fast-list --track-renames "${@:3}"
+	rclone sync "$1" "drive:bak/linux/debian/$2" --verbose --delete-excluded --copy-links --track-renames "${@:3}"
 }
 
 (

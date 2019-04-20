@@ -7,6 +7,9 @@ source ~/.config/aliases.bash
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH ;}
 prepend_path $HOME/.local/apps/miniconda3/bin:$HOME/bin:$HOME/bin/vendor:node_modules/.bin
 
+export RCLONE_TRANSFERS=7
+export RCLONE_FAST_LIST=true
+export RCLONE_PROGRESS=true
 export TS_ONFINISH=notify-send # Task Spooler: http://viric.name/soft/ts/
 export LESS='--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4'
 export VISUAL='gvim --nofork'
