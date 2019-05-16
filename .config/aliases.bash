@@ -34,9 +34,10 @@ alias t=touch
 faketty() { script --flush --return --quiet --command "$(printf "%q " "$@")" /dev/null ;}
 
 tvut() { tvu "$1 %(title)s" "${@:2}" ;}
-# these are mpegts files, but Google Photos doesn't accept them with .ts, nor even with .mts on Android
-tvu() { tvod -o "%(uploader)s/2019-$1.%(ext)s" "${@:2}" ;}
-tvod() { tvodj 5 "$@" ;}
+# these are mpegts files, but Google Photos doesn't accept them with .ts
+# with .mts, the original file will be available in Google Drive (but not with .mp4)
+tvu() { tvod -o "%(uploader)s/2019-$1.mts" "${@:2}" ;}
+tvod() { tvodj 3 "$@" ;}
 tvodj() { command time --format %E twitch_vod_fetch --aria2c-opts "max-concurrent-downloads=$1 lowest-speed-limit=10K rpc-listen-all" "${@:2}" ;}
 
 alias ytname='youtube-dl -o "%(title)s.%(ext)s"'
