@@ -4,6 +4,7 @@ set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 
+waitfor() { tail --pid=`pidof "$@"` -f /dev/null ;} #https://stackoverflow.com/a/41613532
 alias lc='wc --lines'
 h() { "$@" --help ;}
 
