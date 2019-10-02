@@ -14,7 +14,7 @@ new_m3u_size=1
 while [[ $new_m3u_size -gt $old_m3u_size ]]; do
 	echo new: $new_m3u_size old: $old_m3u_size
 	old_m3u_size=$new_m3u_size
-	gvfs-trash --force vod-001.tmp/vod-001.m3u8
+	rm --force vod-001.tmp/vod-001.m3u8
 	mv vod-001{,.part}.mp4 || true
 	tvodj $jobs "$url" --keep-tempfiles --use-part-suffix
 	new_m3u_size=`stat vod-001.tmp/vod-001.m3u8 --format %s`
