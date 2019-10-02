@@ -6,18 +6,19 @@ source ~/.config/aliases.bash
 
 url=$1
 jobs=${2:-1} # parameter 2, or default to '1'
+title=${3:-vod}
 
+m3u_file=$title.tmp/$title.m3u8
 old_m3u_size=0
 new_m3u_size=1
 
 while [[ $new_m3u_size -gt $old_m3u_size ]]; do
 	echo new: $new_m3u_size old: $old_m3u_size
 	old_m3u_size=$new_m3u_size
-	rm --force vod-001.tmp/vod-001.m3u8
-	mv vod-001{,.part}.mp4 || true
-	tvodj $jobs "$url" --keep-tempfiles --use-part-suffix
-	new_m3u_size=`stat vod-001.tmp/vod-001.m3u8 --format %s`
+	rm --force "$m3u_file"
+	mv "$title"{,.part}.mp4 || true
+	tvodj $jobs "$url" "$title" --keep-tempfiles --use-part-suffix
+	new_m3u_size=`stat "$m3u_file" --format %s`
 	sleep 10s # wait to see if another 10-second chunk is added
 done
 
-# rename to destination
