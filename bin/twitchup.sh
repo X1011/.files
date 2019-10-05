@@ -13,9 +13,11 @@ tubeup http://twitch.tv/videos/$id $rest &
 	tcd --video $id --format all --settings-file ~/.config/tcd/"$config".json
 	info=(*$id.info.json)
 	base=${info%.info.json}
+	echo # new line to reset cursor position from concurrent tubeup output
 	mv --verbose {$id,"$base"}.srt
 	mv --verbose {$id,"$base"}.chat.json
-	xz "$base".chat.json
+	echo
+	xz --verbose "$base".chat.json
 ) || true
 wait
 
