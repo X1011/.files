@@ -12,13 +12,25 @@ m3u_file=$title.tmp/$title.m3u8
 old_m3u_size=0
 new_m3u_size=1
 
-while [[ $new_m3u_size -gt $old_m3u_size ]]; do
-	echo new: $new_m3u_size old: $old_m3u_size
+download() {
+	if [[ -f $m3u_file ]]; then
+		rm "$m3u_file"
+		mv "$title"{,.part}.mp4
+	fi
 	old_m3u_size=$new_m3u_size
-	rm --force "$m3u_file"
-	mv "$title"{,.part}.mp4 || true
 	tvodj $jobs "$url" "$title" --keep-tempfiles --use-part-suffix
 	new_m3u_size=`stat "$m3u_file" --format %s`
-	sleep 10s # wait to see if another 10-second chunk is added
+	echo new: $new_m3u_size old: $old_m3u_size
+}
+
+while [[ $new_m3u_size -gt $old_m3u_size ]]; do
+	download
+done
+
+old_m3u_size=0
+while [[ $new_m3u_size -gt $old_m3u_size ]]; do
+	echo waiting 5 minutes for new chunks...
+	sleep 5m
+	download
 done
 
