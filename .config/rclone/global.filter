@@ -1,9 +1,0 @@
-- *.lock
-- *.cache
-- .*.sw[pqr]
-- SingletonLock
-
-- .git/**
-- [cC]ache/**
-- node_modules/**
-
