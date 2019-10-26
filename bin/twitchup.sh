@@ -18,7 +18,7 @@ tubeup http://twitch.tv/videos/$id $rest &
 	
 	find-info
 	# if no file matches, wait and try again
-	[[ ${#info[*]} -gt 0 ]] || (sleep 5s; find-info)
+	if [[ ${#info[*]} = 0 ]]; then sleep 5s; find-info; fi
 	base=${info%.info.json}
 	
 	echo # new line to reset cursor position from concurrent tubeup output
