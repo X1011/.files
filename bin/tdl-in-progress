@@ -13,10 +13,8 @@ old_m3u_size=0
 new_m3u_size=1
 
 download() {
-	if [[ -f $m3u_file ]]; then
-		rm "$m3u_file"
-		mv "$title"{,.part}.mp4
-	fi
+	[[ -f $m3u_file ]] && rm "$m3u_file"
+	[[ -f $title.mp4 ]] && mv "$title"{,.part}.mp4
 	old_m3u_size=$new_m3u_size
 	tvodj $jobs "$url" "$title" --keep-tempfiles --use-part-suffix
 	new_m3u_size=`stat "$m3u_file" --format %s`
