@@ -2,6 +2,7 @@
 # tubeup + Twitch-Chat-Downloader
 
 set -o errexit
+[[ -n $1 && -n $2 ]] || (echo too few arguments; exit 1)
 config=$1
 id=$2
 rest=${@:3}
