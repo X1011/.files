@@ -89,11 +89,12 @@ alias pcu="pacaur -Sau"
 
 alias i="ls --color=auto --si"
 alias ii="i -l"
-alias ia="i -a"
+#alias ia="i -a" # name conflict with Internet Archive tool
 alias iia="i -la"
+# duplicated aliases for Dvorak layout:
 alias e=i
 alias ee=ii
-alias ea=ia
+alias ea='e -a'
 alias eea=iia
 o() { [[ -d $1 ]] && i "$@" || less "$@" ;}
 
