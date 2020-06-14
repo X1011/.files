@@ -6,7 +6,8 @@ source ~/.config/git-aliases.bash
 
 waitfor() { tail --pid=`pidof "$@"` -f /dev/null ;} #https://stackoverflow.com/a/41613532
 alias lc='wc --lines'
-h() { "$@" --help ;}
+alias h='cmd-help ' #space after to expand following aliases: http://askubuntu.com/a/22043
+cmd-help() { "$@" --help ;}
 
 igs() { il '' --stories --no-posts --no-metadata-json "$@" ;}
 il() { instaloader --filename-pattern="{date_utc:%Y-%m-%d %H.%M.%S}$1" --geotags --login x1011__ --sessionfile ~/.cache/instaloader-session "${@:2}" | 
