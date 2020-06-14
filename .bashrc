@@ -20,7 +20,7 @@ export TIGRC_USER=~/.config/tigrc
 export GITHUB_USER=X1011
 export CURL_HOME=~/.config
 
-shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar nullglob histappend xpg_echo
+shopt -s autocd cdable_vars cdspell checkjobs dirspell extglob globstar histappend xpg_echo
 HISTCONTROL=ignoredups
 HISTSIZE=1000
 
