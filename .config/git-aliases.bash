@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 alias g=git
-alias h='git help'
+alias gh='git help'
 alias gc='git config'
 alias cg='git config --global'
 
@@ -35,11 +35,12 @@ sed -e 's/*/•/g;
         s/ ago//g;
         s/\t/    /g'
 }
-l() { lg -n 7 "$@"; }
+l()  { lg -n 7 "$@"; }
+l3() { lg -n 3 "$@"; }
 lb() { l --branches --remotes=origin "$@"; }
 
 alias s='git status --short'
-d() { git diff --word-diff=color "$@" | sed -e 's/\t/    /g'; }
+alias d='git diff'
 alias dp='d HEAD^'
 alias dpc='dp HEAD'
 alias dor='d origin' #don't use 'do'; it's a reserved word
