@@ -4,8 +4,9 @@
 
 source ~/.config/aliases.bash
 
+export GOPATH=$HOME/.local/go
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH ;}
-prepend_path $HOME/.local/apps/miniconda3/bin:$HOME/bin:$HOME/bin/vendor:node_modules/.bin
+prepend_path $GOPATH/bin:$HOME/.local/apps/miniconda3/bin:$HOME/bin:$HOME/bin/vendor:node_modules/.bin
 
 export RCLONE_TRANSFERS=7
 export RCLONE_FAST_LIST=true
