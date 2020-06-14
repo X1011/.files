@@ -3,22 +3,12 @@
 set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
+source ~/.config/media-aliases.bash
 
 waitfor() { tail --pid=`pidof "$@"` -f /dev/null ;} #https://stackoverflow.com/a/41613532
 alias lc='wc --lines'
 alias h='cmd-help ' #space after to expand following aliases: http://askubuntu.com/a/22043
 cmd-help() { "$@" --help ;}
-
-igs() { il '' --stories --no-posts --no-metadata-json "$@" ;}
-il() { instaloader --filename-pattern="{date_utc:%Y-%m-%d %H.%M.%S}$1" --geotags --login x1011__ --sessionfile ~/.cache/instaloader-session "${@:2}" | 
-	egrep --invert-match \
-	-e 'profile_pic\.jpg already exists' \
-	-e '^Logged in as ' \
-	-e '^Loaded session from ' \
-	-e '^Saved session to ' \
-;}
-#--filename-pattern: date story / post
-    #rename existing
 
 alias un='uname -rv'
 alias xz='xz --verbose'
@@ -35,21 +25,8 @@ alias pv='pv --progress --timer --eta --rate --average-rate --bytes'
 alias t=touch
 faketty() { script --flush --return --quiet --command "$(printf "%q " "$@")" /dev/null ;}
 
-tvut() { tvu "$1 %(title)s" "${@:2}" ;}
-# .ts would be the correct extension for these MPEG Transport Stream files, according to Wikipedia, but .mts is more compatible
-tvu() { tvod -o "%(uploader)s/2020-$1.mts" "${@:2}" ;}
-tvod() { tvodj 3 "$@" ;}
-tvodj() { command time --format %E twitch_vod_fetch --aria2c-opts "max-concurrent-downloads=$1 lowest-speed-limit=10K rpc-listen-all" "${@:2}" ;}
-
-alias ytname='youtube-dl -o "%(title)s.%(ext)s"'
-alias ytflat='youtube-dl -o "%(uploader)s - %(title)s.%(ext)s"'
-alias ytpl='youtube-dl -o "~/video/%(playlist_title)s/%(uploader)s - %(title)s.%(ext)s"'
-
 alias sudo='sudo ' # makes Bash expand the word after sudo if it's an alias: http://askubuntu.com/a/22043
 alias userstyles='objectpath --url https://widget.userstyles.org/users/24012.json --expr "sum($.*.total_installs) + 2608"'
-alias ff='ffmpeg -hide_banner'
-alias ffp='ffprobe -hide_banner'
-alias ffpl='ffplay -hide_banner'
 filter-clipboard() { eval "xclip -out -selection clipboard | $@ | xclip -in -selection clipboard" ;}
 alias al=id
 id() {
