@@ -2,12 +2,16 @@
 
 set -o pipefail
 
+tvflatt() { tvflat "$1 %(title)s" "${@:2}" ;}
+tvflat() { tvod -o "%(uploader)s 2020-$1.mts" "${@:2}" ;}
+
 tvut() { tvu "$1 %(title)s" "${@:2}" ;}
 # .ts would be the correct extension for these MPEG Transport Stream files, according to Wikipedia, but .mts is more compatible
 tvu() { tvod -o "%(uploader)s/2020-$1.mts" "${@:2}" ;}
 tvod() { tvodj 3 "$@" ;}
 tvodj() { command time --format %E twitch_vod_fetch --aria2c-opts "max-concurrent-downloads=$1 lowest-speed-limit=10K rpc-listen-all" "${@:2}" ;}
 
+alias ydls='youtube-dl --config-location ~/.config/youtube-dl/stream-config'
 alias ytname='youtube-dl -o "%(title)s.%(ext)s"'
 alias ytflat='youtube-dl -o "%(uploader)s - %(title)s.%(ext)s"'
 alias ytpl='youtube-dl -o "~/video/%(playlist_title)s/%(uploader)s - %(title)s.%(ext)s"'
