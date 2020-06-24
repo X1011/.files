@@ -1,8 +1,20 @@
 #! /usr/bin/env bash
 
+aue() { ia-upload-tvod "$@" -m language:English ;}
+alias aut=ia-upload-tvod
+ia-upload-tvod() {
+	local id=$1
+	local creator=$2
+	local date=$3
+	local title=$4
+	local slug=$5
+	local tags=$6
+	local rest=${@:7}
+	ia upload $creator-${date}_$slug "$creator $date"*.{srt,xz,mts} -m mediatype:movies -m collection:opensource_movies -m creator:$creator -m date:$date -m source:https://twitch.tv/videos/$id -m "title:$title" -m "subject:TwitchVod;$tags" "$rest"
+}
+
 alias tcv=twitch-chat-vod
-twitch-chat-vod() {( # subshell for errexit
-	set -o errexit
+twitch-chat-vod() {( set -o errexit
 	tcd --format all --settings-file ~/.config/tcd/$1.json -v $2
 	mv --verbose {$2,"$3"}.srt
 	mv --verbose {$2,"$3"}.chat.json
