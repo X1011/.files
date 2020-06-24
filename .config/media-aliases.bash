@@ -1,6 +1,14 @@
 #! /usr/bin/env bash
 
-set -o pipefail
+alias tcv=twitch-chat-vod
+twitch-chat-vod() {( # subshell for errexit
+	set -o errexit
+	tcd --format all --settings-file ~/.config/tcd/$1.json -v $2
+	mv --verbose {$2,"$3"}.srt
+	mv --verbose {$2,"$3"}.chat.json
+	xz "$3".chat.json
+	tvod https://twitch.tv/videos/$2 -o "$3.mts" "${@:4}"
+)}
 
 tvflatt() { tvflat "$1 %(title)s" "${@:2}" ;}
 tvflat() { tvod -o "%(uploader)s 2020-$1.mts" "${@:2}" ;}
