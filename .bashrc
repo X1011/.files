@@ -8,14 +8,16 @@ export GOPATH=$HOME/.local/go
 prepend_path() { [[ $PATH == *$1* ]] || PATH=$1:$PATH ;}
 prepend_path $GOPATH/bin:$HOME/.local/apps/miniconda3/bin:$HOME/bin:$HOME/bin/vendor:node_modules/.bin
 
-export RCLONE_TRANSFERS=7
-export RCLONE_FAST_LIST=true
-export RCLONE_PROGRESS=true
-export TS_ONFINISH=notify-send # Task Spooler: http://viric.name/soft/ts/
-export LESS='--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4'
 export VISUAL='gvim --nofork'
 export EDITOR="$VISUAL"
 export DIFFPROG=meld
+
+export RCLONE_TRANSFERS=7
+export RCLONE_FAST_LIST=true
+export RCLONE_PROGRESS=true
+
+export TS_ONFINISH=notify-send # Task Spooler: http://viric.name/soft/ts/
+export LESS='--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4'
 export TIGRC_USER=~/.config/tigrc
 export GITHUB_USER=X1011
 export CURL_HOME=~/.config
