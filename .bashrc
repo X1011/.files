@@ -16,6 +16,7 @@ export RCLONE_TRANSFERS=7
 export RCLONE_FAST_LIST=true
 export RCLONE_PROGRESS=true
 
+export XZ_DEFAULTS=--verbose
 export TS_ONFINISH=notify-send # Task Spooler: http://viric.name/soft/ts/
 export LESS='--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --tabs=4'
 export TIGRC_USER=~/.config/tigrc

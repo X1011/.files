@@ -1,6 +1,5 @@
 #! /usr/bin/env bash
 
-set -o pipefail
 unalias -a
 source ~/.config/git-aliases.bash
 source ~/.config/media-aliases.bash
@@ -11,7 +10,6 @@ alias h='cmd-help ' #space after to expand following aliases: http://askubuntu.c
 cmd-help() { "$@" --help ;}
 
 alias un='uname -rv'
-alias xz='xz --verbose'
 alias rhd=rsync-hd
 
 alias rcl=rclone
