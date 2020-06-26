@@ -9,8 +9,8 @@ ia-upload-tvod() {
 	local title=$4
 	local slug=$5
 	local tags=$6
-	local rest=${@:7}
-	ia upload $creator-${date}_$slug "$creator $date"*.{srt,xz,mts} -m mediatype:movies -m collection:opensource_movies -m creator:$creator -m date:$date -m source:https://twitch.tv/videos/$id -m "title:$title" -m "subject:TwitchVod;$tags" "$rest"
+	shift 6
+	ia upload $creator-${date}_$slug "$creator $date"*.{srt,xz,mts} -m mediatype:movies -m collection:opensource_movies -m creator:$creator -m date:$date -m source:https://twitch.tv/videos/$id -m "title:$title" -m "subject:TwitchVod;$tags" "$@"
 }
 
 alias tcv=twitch-chat-vod
