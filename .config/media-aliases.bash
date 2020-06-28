@@ -31,10 +31,11 @@ twitch-chat-vod() {( set -o errexit
 	local basename="$creator $date $title"
 	
 	tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
-	mv --verbose {$id,"$basename"}.srt
-	mv --verbose {$id,"$basename"}.chat.json
+	mv {$id,"$basename"}.srt
+	mv {$id,"$basename"}.chat.json
 	xz "$basename".chat.json
-	tvod https://twitch.tv/videos/$id -o "$basename".mts "${@:6}"
+	tvod https://twitch.tv/videos/$id $id "${@:6}"
+	mv $id.mp4 "$basename".mts
 )}
 
 tvflatt() { tvflat "$1 %(title)s" "${@:2}" ;}
