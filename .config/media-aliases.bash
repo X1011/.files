@@ -22,11 +22,19 @@ ia-upload-tvod() {
 
 alias tcv=twitch-chat-vod
 twitch-chat-vod() {( set -o errexit
-	tcd --format all --settings-file ~/.config/tcd/$1.json -v $2
-	mv --verbose {$2,"$3"}.srt
-	mv --verbose {$2,"$3"}.chat.json
-	xz "$3".chat.json
-	tvod https://twitch.tv/videos/$2 -o "$3.mts" "${@:4}"
+	local config=$1
+	local id=$2
+	local creator=$3
+	local date=$4
+	local title=$5
+	
+	local basename="$creator $date $title"
+	
+	tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
+	mv --verbose {$id,"$basename"}.srt
+	mv --verbose {$id,"$basename"}.chat.json
+	xz "$basename".chat.json
+	tvod https://twitch.tv/videos/$id -o "$basename".mts "${@:6}"
 )}
 
 tvflatt() { tvflat "$1 %(title)s" "${@:2}" ;}
