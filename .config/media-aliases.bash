@@ -10,6 +10,8 @@ ia-upload-tvod() {
 	local slug=$5
 	local tags=$6
 	
+	echo -n uploading to https://archive.org/details/
+	
 	ia upload $creator-${date}_$slug \
 	         "$creator $date"*.{srt,xz,mts} \
 		-m creator:$creator -m date:$date \
