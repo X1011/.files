@@ -13,15 +13,15 @@ ia-upload-tvod() {
 	echo -n uploading to https://archive.org/details/
 	
 	ia upload $creator-${date}_$slug \
-	         "$creator $date"*.{srt,xz,mts} \
+	         "$creator $date"*.{jpg,srt,xz,mts} \
 		-m creator:$creator -m date:$date \
 		-m "title:$title" -m "subject:TwitchVod;$tags" \
 		-m mediatype:movies -m collection:opensource_movies \
 		-m source:https://twitch.tv/videos/$id "${@:7}"
 }
 
-alias tcv=twitch-chat-vod
-twitch-chat-vod() {( set -o errexit
+alias tvm=twitch-vod-meta
+twitch-vod-meta() {( set -o errexit
 	local config=$1
 	local id=$2
 	local creator=$3
@@ -32,10 +32,13 @@ twitch-chat-vod() {( set -o errexit
 	
 	echo $title | slugify
 	
+	youtube-dl https://twitch.tv/videos/$id --ignore-config --write-thumbnail --write-description --skip-download -o "$basename.%(ext)s"
+	
 	tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
 	mv {$id,"$basename"}.srt
 	mv {$id,"$basename"}.chat.json
 	xz "$basename".chat.json
+	
 	tvod https://twitch.tv/videos/$id $id "${@:6}"
 	mv -v $id.mp4 "$basename".mts
 )}
