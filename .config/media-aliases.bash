@@ -30,13 +30,17 @@ twitch-chat-vod() {( set -o errexit
 	
 	local basename="$creator $date $title"
 	
+	echo $title | slugify
+	
 	tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
 	mv {$id,"$basename"}.srt
 	mv {$id,"$basename"}.chat.json
 	xz "$basename".chat.json
 	tvod https://twitch.tv/videos/$id $id "${@:6}"
-	mv $id.mp4 "$basename".mts
+	mv -v $id.mp4 "$basename".mts
 )}
+
+slugify() { sed --regexp-extended -e 's/[^-_.[:alnum:]]+/-/g' -e 's/-+/-/g' "$@" ;}
 
 tvflatt() { tvflat "$1 %(title)s" "${@:2}" ;}
 tvflat() { tvod -o "%(uploader)s 2020-$1.mts" "${@:2}" ;}
