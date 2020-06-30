@@ -29,8 +29,8 @@ twitch-vod-meta() {( set -o errexit
 	local title=$5
 	
 	local basename="$creator $date $title"
-	
-	echo $title | slugify
+	local slug=`echo $title | slugify`
+	echo $slug
 	
 	youtube-dl https://twitch.tv/videos/$id --ignore-config --write-thumbnail --write-description --skip-download -o "$basename.%(ext)s"
 	
@@ -40,10 +40,12 @@ twitch-vod-meta() {( set -o errexit
 	xz "$basename".chat.json
 	
 	tvod https://twitch.tv/videos/$id $id "${@:6}"
-	mv -v $id.mp4 "$basename".mts
+	mv $id.mp4 "$basename".mts
+	echo $slug
+	echo $creator-${date}_$slug
 )}
 
-slugify() { sed --regexp-extended -e 's/[^-_.[:alnum:]]+/-/g' -e 's/-+/-/g' "$@" ;}
+slugify() { sed --regexp-extended -e 's/[^-_.[:alnum:]]+/-/g' -e 's/-+/-/g' -e 's/^-|-$//g' "$@" ;}
 
 tvflatt() { tvflat "$1 %(title)s" "${@:2}" ;}
 tvflat() { tvod -o "%(uploader)s 2020-$1.mts" "${@:2}" ;}
