@@ -28,6 +28,7 @@ twitch-vod-meta() {( set -o errexit
 	local date=$4
 	local title=$5
 	
+	title=${title//\//–} # replace all slashes with –
 	local basename="$creator $date $title"
 	local slug=`echo $title | slugify`
 	echo $slug
