@@ -34,13 +34,14 @@ twitch-vod-meta() {( set -o errexit
 	echo $slug
 	
 	youtube-dl https://twitch.tv/videos/$id --ignore-config --write-thumbnail --write-description --skip-download -o "$basename.%(ext)s"
+	[[ -f $basename.jpg ]] # make sure download succeeded
 	
 	tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
 	mv {$id,"$basename"}.srt
 	mv {$id,"$basename"}.chat.json
 	xz "$basename".chat.json
 	
-	tvod https://twitch.tv/videos/$id $id "${@:6}"
+	tvod --use-part-suffix https://twitch.tv/videos/$id $id "${@:6}"
 	mv $id.mp4 "$basename".mts
 	echo $slug
 	echo $creator-${date}_$slug
