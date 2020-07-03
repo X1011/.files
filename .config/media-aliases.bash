@@ -33,7 +33,8 @@ twitch-vod-meta() {( set -o errexit
 	local slug=`echo $title | slugify`
 	echo $slug
 	
-	youtube-dl https://twitch.tv/videos/$id --ignore-config --write-thumbnail --write-description --skip-download -o "$basename.%(ext)s"
+	# escape % in name for output template
+	youtube-dl https://twitch.tv/videos/$id --ignore-config --write-thumbnail --write-description --skip-download --output "${basename//%/%%}.%(ext)s"
 	[[ -f $basename.jpg ]] # make sure download succeeded
 	
 	tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
