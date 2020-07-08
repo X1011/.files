@@ -28,10 +28,11 @@ twitch-vod-meta() {( set -o errexit
 	local date=$4
 	local title=$5
 	
-	title=${title//\//–} # replace all slashes with –
-	local basename="$creator $date $title"
-	local slug=`echo $title | slugify`
+	local basename="$creator $date ${title//\//–}" # replace all slashes with –
+	local slug=`slugify <<< $title`
+	local ia_id=$creator-${date}_$slug
 	echo $slug
+	echo $ia_id "(${#ia_id} chars)"
 	
 	# escape % in name for output template
 	youtube-dl https://twitch.tv/videos/$id --ignore-config --write-thumbnail --write-description --skip-download --output "${basename//%/%%}.%(ext)s" --quiet
@@ -46,7 +47,6 @@ twitch-vod-meta() {( set -o errexit
 	mv $id.mp4 "$basename".mts
 	
 	echo $slug
-	local ia_id=$creator-${date}_$slug
 	echo $ia_id "(${#ia_id} chars)"
 )}
 
