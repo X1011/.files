@@ -62,6 +62,7 @@ tvod() { tvodj 3 "$@" ;}
 # command time to avoid feature-limited bash built-in
 tvodj() { command time --format 'finished in %E' twitch_vod_fetch --aria2c-opts "max-concurrent-downloads=$1 lowest-speed-limit=10K rpc-listen-all" "${@:2}" ;}
 
+alias thumb='youtube-dl --ignore-config --write-thumbnail --skip-download --output "%(uploader)s %(upload_date)s %(title)s.%(ext)s"'
 alias ydls='youtube-dl --config-location ~/.config/youtube-dl/stream-config'
 alias ytname='youtube-dl -o "%(title)s.%(ext)s"'
 alias ytflat='youtube-dl -o "%(uploader)s - %(title)s.%(ext)s"'
