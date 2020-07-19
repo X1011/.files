@@ -11,9 +11,10 @@ ia-upload-tvod() {
 	local tags=$6
 	
 	echo -n uploading to https://archive.org/details/
+	shopt -s nullglob # allow some files to be missing
 	
 	ia upload $creator-${date}_$slug \
-	         "$creator $date"*.{jpg,srt,xz,mts} \
+	         "$creator $date"*.{jpg,png,srt,xz,mts} \
 		-m creator:$creator -m date:$date \
 		-m "title:$title" -m "subject:TwitchVod;$tags" \
 		-m mediatype:movies -m collection:opensource_movies \
