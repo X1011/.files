@@ -51,6 +51,8 @@ twitch-vod-meta() {( set -o errexit
 
 slugify() { sed --regexp-extended -e 's/[^-_.[:alnum:]]+/-/g' -e 's/-+/-/g' -e 's/^-|-$//g' "$@" ;}
 
+alias iau='ia upload'
+
 tvflatt() { tvflat "$1 %(title)s" "${@:2}" ;}
 tvflat() { tvod -o "%(uploader)s 2020-$1.mts" "${@:2}" ;}
 
