@@ -14,7 +14,7 @@ ia-upload-tvod() {
 	shopt -s nullglob # allow some files to be missing
 	
 	ia upload $creator-${date}_$slug \
-	         "$creator $date"*.{jpg,png,srt,xz,mts} \
+	         "$creator $date"*.{jpg,jpeg,png,srt,xz,mts} \
 		-m creator:$creator -m date:$date \
 		-m "title:$title" -m "subject:TwitchVod;$tags" \
 		-m mediatype:movies -m collection:opensource_movies \
