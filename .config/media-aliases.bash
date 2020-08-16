@@ -23,6 +23,7 @@ ia-upload-tvod() {
 
 alias tvm=twitch-vod-meta
 twitch-vod-meta() {( set -o errexit
+	if [[ $# -lt 5 ]]; then echo too few arguments; exit 1; fi
 	local config=$1
 	local id=$2
 	local creator=$3
