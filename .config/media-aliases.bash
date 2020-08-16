@@ -50,7 +50,7 @@ twitch-vod-meta() {( set -o errexit
 	echo $ia_id "(${#ia_id} chars)"
 )}
 
-slugify() { sed --regexp-extended -e 's/[^-_.[:alnum:]]+/-/g' -e 's/-+/-/g' -e 's/^-|-$//g' "$@" ;}
+slugify() { sed --regexp-extended -e "s/'//g" -e 's/[^-_.[:alnum:]]+/-/g' -e 's/-+/-/g' -e 's/^-|-$//g' "$@" ;}
 
 alias iau='ia upload'
 
