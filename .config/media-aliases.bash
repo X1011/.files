@@ -31,7 +31,7 @@ twitch-vod-meta() {( set -o errexit
 	local title=$5
 	
 	local basename="$creator $date ${title//\//–}" # replace all slashes with –
-	local slug=`slugify <<< $title`
+	local slug=`slugify "$title"`
 	local ia_id=$creator-${date}_$slug
 	echo $slug
 	echo $ia_id "(${#ia_id} chars)"
@@ -51,7 +51,7 @@ twitch-vod-meta() {( set -o errexit
 	echo $ia_id "(${#ia_id} chars)"
 )}
 
-slugify() { sed --regexp-extended -e "s/'//g" -e 's/[^-_.[:alnum:]]+/-/g' -e 's/-+/-/g' -e 's/^-|-$//g' "$@" ;}
+slugify() { sed --regexp-extended -e "s/'//g" -e 's/[^-_.[:alnum:]]+/-/g' -e 's/-+/-/g' -e 's/^-|-$//g' <<< "$*" ;}
 
 alias iau='ia upload'
 
