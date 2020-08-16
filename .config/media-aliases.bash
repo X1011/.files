@@ -10,6 +10,8 @@ ia-upload-tvod() {
 	local slug=$5
 	local tags=$6
 	
+	[[ $slug = - ]] && slug=`slugify "$title"`
+	
 	echo -n uploading to https://archive.org/details/
 	shopt -s nullglob # allow some files to be missing
 	
