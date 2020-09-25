@@ -41,10 +41,14 @@ twitch-vod-meta() {( set -o errexit
 	# escape % in name for output template
 	youtube-dl https://twitch.tv/videos/$id --ignore-config --write-thumbnail --write-description --skip-download --output "${basename//%/%%}.%(ext)s" --quiet
 	
-	tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
-	mv {$id,"$basename"}.srt
-	mv {$id,"$basename"}.chat.json
-	xz "$basename".chat.json
+	if [[ -s "$basename".chat.json.xz ]]; then
+		echo "$basename".chat.json.xz found. skipping chat download.
+	else
+		tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
+		mv {$id,"$basename"}.srt
+		mv {$id,"$basename"}.chat.json
+		xz "$basename".chat.json
+	fi
 	
 	tvod --use-part-suffix https://twitch.tv/videos/$id $id "${@:6}"
 	mv $id.mp4 "$basename".mts
