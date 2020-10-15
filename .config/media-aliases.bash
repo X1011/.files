@@ -45,6 +45,9 @@ twitch-vod-meta() {( set -o errexit
 		echo "$basename".chat.json.xz found. skipping chat download.
 	else
 		tcd --format all --settings-file ~/.config/tcd/$config.json -v $id
+		if [[ ! -s $id.srt ]]; then
+			echo chat failed to download. aborting; exit 2
+		fi
 		mv {$id,"$basename"}.srt
 		mv {$id,"$basename"}.chat.json
 		xz "$basename".chat.json
@@ -69,7 +72,7 @@ tvut() { tvu "$1 %(title)s" "${@:2}" ;}
 tvu() { tvod -o "%(uploader)s/2020-$1.mts" "${@:2}" ;}
 tvod() { tvodj 3 "$@" ;}
 # command time to avoid feature-limited bash built-in
-tvodj() { command time --format 'finished in %E' twitch_vod_fetch --aria2c-opts "max-concurrent-downloads=$1 lowest-speed-limit=10K rpc-listen-all" "${@:2}" ;}
+tvodj() { command time --format 'finished in %E' twitch_vod_fetch --aria2c-opts "max-concurrent-downloads=$1 lowest-speed-limit=5K rpc-listen-all" "${@:2}" ;}
 
 alias thumb='youtube-dl --ignore-config --write-thumbnail --skip-download --output "%(uploader)s %(upload_date)s %(title)s.%(ext)s"'
 alias ydls='youtube-dl --config-location ~/.config/youtube-dl/stream-config'
